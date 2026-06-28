@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useEstudiantes } from '../../hooks/useEstudiantes';
+import { useCareer } from '../../context/CareerContext';
 import { Users, BarChart2, AlertTriangle, Filter, Loader2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
-import { getRolUsuario } from '../../services/authService';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
 import { CustomSelect } from '../ui/CustomSelect';
@@ -22,16 +22,12 @@ interface EstudianteConScore {
 
 export const DashDocente = () => {
   const { usuario, rol } = useAuth();
-  const [carreraId, setCarreraId] = useState<string | undefined>(undefined);
+  const { carreraId: contextCarreraId } = useCareer();
 
-  // Resolve carreraId for docente
-  useEffect(() => {
-    if (usuario?.id && rol === 'docente') {
-      getRolUsuario(usuario.id).then(({ data }) => {
-        if (data?.carrera_id) setCarreraId(data.carrera_id);
-      });
-    }
-  }, [usuario?.id, rol]);
+  // Use CareerContext's resolved carreraId (auto-selects first carrera with data).
+  // For docentes without an explicit carrera_id in usuario_roles, this fallback
+  // ensures they still see students instead of an empty dashboard.
+  const carreraId = contextCarreraId ?? undefined;
 
   const { estudiantes: rawEstudiantes, loading: estLoading, error: estError } = useEstudiantes(
     usuario?.id || '',

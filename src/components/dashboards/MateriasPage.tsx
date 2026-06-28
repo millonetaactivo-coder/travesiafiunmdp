@@ -1,20 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { usePlan } from '../../hooks/usePlan';
+import { useCareer } from '../../context/CareerContext';
 import { getRolUsuario } from '../../services/authService';
 import { motion } from 'framer-motion';
 import { BookOpen, GraduationCap } from 'lucide-react';
 
 export const MateriasPage = () => {
   const { usuario, rol } = useAuth();
-  const [carreraId, setCarreraId] = useState<string | undefined>();
+  const { carreraId: contextCarreraId } = useCareer();
+  const [explicitCarreraId, setExplicitCarreraId] = useState<string | undefined>();
 
   useEffect(() => {
     if (!usuario?.id) return;
     getRolUsuario(usuario.id).then(({ data }) => {
-      if (data?.carrera_id) setCarreraId(data.carrera_id);
+      if (data?.carrera_id) setExplicitCarreraId(data.carrera_id);
     });
   }, [usuario?.id]);
+
+  // Prefer explicit carrera from roles, fall back to CareerContext auto-selection
+  const carreraId = useMemo(
+    () => explicitCarreraId ?? contextCarreraId ?? undefined,
+    [explicitCarreraId, contextCarreraId]
+  );
 
   const { plan, loading } = usePlan(carreraId);
 

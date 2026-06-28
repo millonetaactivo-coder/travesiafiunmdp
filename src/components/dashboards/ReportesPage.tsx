@@ -112,7 +112,8 @@ export const ReportesPage = () => {
     }
   }, [usuario?.id, rol]);
 
-  const carreraId = rol === 'docente' ? docenteCarreraId : careerCarreraId;
+  // Fall back to CareerContext when the docente has no explicit carrera_id in usuario_roles
+  const carreraId = rol === 'docente' ? (docenteCarreraId ?? careerCarreraId) : careerCarreraId;
 
   const [reportType, setReportType] = useState<ReportType>('cohorte');
   const [loading, setLoading] = useState(false);
