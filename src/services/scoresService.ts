@@ -4,7 +4,7 @@ import { DistribucionCohorte } from '../types/database';
 export const getUltimoScore = async (estudianteId: string) => {
   return await supabase
     .from('scores')
-    .select('valor, nivel_riesgo, calculado_at, componentes')
+    .select('valor, nivel_riesgo, calculado_at, componentes, fecha_entrada_rojo')
     .eq('estudiante_id', estudianteId)
     .order('calculado_at', { ascending: false })
     .limit(1)

@@ -3873,46 +3873,6 @@
     }
   },
   "indexes": {
-    "index:_realtime.extensions.extensions_pkey": {
-      "schema": "_realtime",
-      "table_name": "extensions",
-      "name": "extensions_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX extensions_pkey ON _realtime.extensions USING btree (id)",
-      "comment": null,
-      "owner": "supabase_admin"
-    },
     "index:_realtime.extensions.extensions_tenant_external_id_type_index": {
       "schema": "_realtime",
       "table_name": "extensions",
@@ -3998,10 +3958,10 @@
       "comment": null,
       "owner": "supabase_admin"
     },
-    "index:_realtime.feature_flags.feature_flags_pkey": {
+    "index:_realtime.extensions.extensions_pkey": {
       "schema": "_realtime",
-      "table_name": "feature_flags",
-      "name": "feature_flags_pkey",
+      "table_name": "extensions",
+      "name": "extensions_pkey",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -4034,7 +3994,7 @@
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX feature_flags_pkey ON _realtime.feature_flags USING btree (id)",
+      "definition": "CREATE UNIQUE INDEX extensions_pkey ON _realtime.extensions USING btree (id)",
       "comment": null,
       "owner": "supabase_admin"
     },
@@ -4075,6 +4035,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX feature_flags_name_index ON _realtime.feature_flags USING btree (name)",
+      "comment": null,
+      "owner": "supabase_admin"
+    },
+    "index:_realtime.feature_flags.feature_flags_pkey": {
+      "schema": "_realtime",
+      "table_name": "feature_flags",
+      "name": "feature_flags_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX feature_flags_pkey ON _realtime.feature_flags USING btree (id)",
       "comment": null,
       "owner": "supabase_admin"
     },
@@ -4198,46 +4198,6 @@
       "comment": null,
       "owner": "supabase_admin"
     },
-    "index:auth.audit_log_entries.audit_log_entries_pkey": {
-      "schema": "auth",
-      "table_name": "audit_log_entries",
-      "name": "audit_log_entries_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX audit_log_entries_pkey ON auth.audit_log_entries USING btree (id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
     "index:auth.audit_log_entries.audit_logs_instance_id_idx": {
       "schema": "auth",
       "table_name": "audit_log_entries",
@@ -4278,18 +4238,18 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.custom_oauth_providers.custom_oauth_providers_provider_type_idx": {
+    "index:auth.audit_log_entries.audit_log_entries_pkey": {
       "schema": "auth",
-      "table_name": "custom_oauth_providers",
-      "name": "custom_oauth_providers_provider_type_idx",
+      "table_name": "audit_log_entries",
+      "name": "audit_log_entries_pkey",
       "storage_params": [],
       "statistics_target": [
         -1
       ],
       "index_type": "btree",
       "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
+      "is_unique": true,
+      "is_primary": true,
       "is_exclusion": false,
       "nulls_not_distinct": false,
       "immediate": true,
@@ -4310,11 +4270,11 @@
       "index_expressions": null,
       "partial_predicate": null,
       "table_relkind": "r",
-      "is_owned_by_constraint": false,
+      "is_owned_by_constraint": true,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE INDEX custom_oauth_providers_provider_type_idx ON auth.custom_oauth_providers USING btree (provider_type)",
+      "definition": "CREATE UNIQUE INDEX audit_log_entries_pkey ON auth.audit_log_entries USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -4358,10 +4318,10 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.custom_oauth_providers.custom_oauth_providers_created_at_idx": {
+    "index:auth.custom_oauth_providers.custom_oauth_providers_provider_type_idx": {
       "schema": "auth",
       "table_name": "custom_oauth_providers",
-      "name": "custom_oauth_providers_created_at_idx",
+      "name": "custom_oauth_providers_provider_type_idx",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -4376,7 +4336,7 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        23
+        2
       ],
       "column_collations": [
         null
@@ -4394,47 +4354,7 @@
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE INDEX custom_oauth_providers_created_at_idx ON auth.custom_oauth_providers USING btree (created_at)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.custom_oauth_providers.custom_oauth_providers_identifier_idx": {
-      "schema": "auth",
-      "table_name": "custom_oauth_providers",
-      "name": "custom_oauth_providers_identifier_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        3
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX custom_oauth_providers_identifier_idx ON auth.custom_oauth_providers USING btree (identifier)",
+      "definition": "CREATE INDEX custom_oauth_providers_provider_type_idx ON auth.custom_oauth_providers USING btree (provider_type)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -4518,6 +4438,126 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
+    "index:auth.custom_oauth_providers.custom_oauth_providers_identifier_idx": {
+      "schema": "auth",
+      "table_name": "custom_oauth_providers",
+      "name": "custom_oauth_providers_identifier_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        3
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX custom_oauth_providers_identifier_idx ON auth.custom_oauth_providers USING btree (identifier)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.custom_oauth_providers.custom_oauth_providers_created_at_idx": {
+      "schema": "auth",
+      "table_name": "custom_oauth_providers",
+      "name": "custom_oauth_providers_created_at_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        23
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX custom_oauth_providers_created_at_idx ON auth.custom_oauth_providers USING btree (created_at)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.flow_state.flow_state_pkey": {
+      "schema": "auth",
+      "table_name": "flow_state",
+      "name": "flow_state_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX flow_state_pkey ON auth.flow_state USING btree (id)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
     "index:auth.flow_state.idx_auth_code": {
       "schema": "auth",
       "table_name": "flow_state",
@@ -4555,6 +4595,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE INDEX idx_auth_code ON auth.flow_state USING btree (auth_code)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.flow_state.flow_state_created_at_idx": {
+      "schema": "auth",
+      "table_name": "flow_state",
+      "name": "flow_state_created_at_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        9
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        3
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX flow_state_created_at_idx ON auth.flow_state USING btree (created_at DESC)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -4600,126 +4680,6 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE INDEX idx_user_id_auth_method ON auth.flow_state USING btree (user_id, authentication_method)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.flow_state.flow_state_pkey": {
-      "schema": "auth",
-      "table_name": "flow_state",
-      "name": "flow_state_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX flow_state_pkey ON auth.flow_state USING btree (id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.flow_state.flow_state_created_at_idx": {
-      "schema": "auth",
-      "table_name": "flow_state",
-      "name": "flow_state_created_at_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        9
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        3
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX flow_state_created_at_idx ON auth.flow_state USING btree (created_at DESC)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.identities.identities_pkey": {
-      "schema": "auth",
-      "table_name": "identities",
-      "name": "identities_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        9
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX identities_pkey ON auth.identities USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -4848,6 +4808,46 @@
       "comment": "Auth: Ensures indexed queries on the email column",
       "owner": "supabase_auth_admin"
     },
+    "index:auth.identities.identities_pkey": {
+      "schema": "auth",
+      "table_name": "identities",
+      "name": "identities_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        9
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX identities_pkey ON auth.identities USING btree (id)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
     "index:auth.instances.instances_pkey": {
       "schema": "auth",
       "table_name": "instances",
@@ -4973,46 +4973,6 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.mfa_challenges.mfa_challenges_pkey": {
-      "schema": "auth",
-      "table_name": "mfa_challenges",
-      "name": "mfa_challenges_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX mfa_challenges_pkey ON auth.mfa_challenges USING btree (id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
     "index:auth.mfa_challenges.mfa_challenge_created_at_idx": {
       "schema": "auth",
       "table_name": "mfa_challenges",
@@ -5053,55 +5013,10 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.mfa_factors.unique_phone_factor_per_user": {
+    "index:auth.mfa_challenges.mfa_challenges_pkey": {
       "schema": "auth",
-      "table_name": "mfa_factors",
-      "name": "unique_phone_factor_per_user",
-      "storage_params": [],
-      "statistics_target": [
-        -1,
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2,
-        9
-      ],
-      "column_collations": [
-        null,
-        null
-      ],
-      "operator_classes": [
-        "default",
-        "default"
-      ],
-      "column_options": [
-        0,
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX unique_phone_factor_per_user ON auth.mfa_factors USING btree (user_id, phone)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.mfa_factors.mfa_factors_pkey": {
-      "schema": "auth",
-      "table_name": "mfa_factors",
-      "name": "mfa_factors_pkey",
+      "table_name": "mfa_challenges",
+      "name": "mfa_challenges_pkey",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -5134,92 +5049,7 @@
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX mfa_factors_pkey ON auth.mfa_factors USING btree (id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.mfa_factors.mfa_factors_last_challenged_at_key": {
-      "schema": "auth",
-      "table_name": "mfa_factors",
-      "name": "mfa_factors_last_challenged_at_key",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        10
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX mfa_factors_last_challenged_at_key ON auth.mfa_factors USING btree (last_challenged_at)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.mfa_factors.factor_id_created_at_idx": {
-      "schema": "auth",
-      "table_name": "mfa_factors",
-      "name": "factor_id_created_at_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1,
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2,
-        6
-      ],
-      "column_collations": [
-        null,
-        null
-      ],
-      "operator_classes": [
-        "default",
-        "default"
-      ],
-      "column_options": [
-        0,
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX factor_id_created_at_idx ON auth.mfa_factors USING btree (user_id, created_at)",
+      "definition": "CREATE UNIQUE INDEX mfa_challenges_pkey ON auth.mfa_challenges USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -5260,6 +5090,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE INDEX mfa_factors_user_id_idx ON auth.mfa_factors USING btree (user_id)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.mfa_factors.mfa_factors_pkey": {
+      "schema": "auth",
+      "table_name": "mfa_factors",
+      "name": "mfa_factors_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX mfa_factors_pkey ON auth.mfa_factors USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -5308,10 +5178,100 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.oauth_authorizations.oauth_authorizations_authorization_id_key": {
+    "index:auth.mfa_factors.factor_id_created_at_idx": {
       "schema": "auth",
-      "table_name": "oauth_authorizations",
-      "name": "oauth_authorizations_authorization_id_key",
+      "table_name": "mfa_factors",
+      "name": "factor_id_created_at_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1,
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2,
+        6
+      ],
+      "column_collations": [
+        null,
+        null
+      ],
+      "operator_classes": [
+        "default",
+        "default"
+      ],
+      "column_options": [
+        0,
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX factor_id_created_at_idx ON auth.mfa_factors USING btree (user_id, created_at)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.mfa_factors.unique_phone_factor_per_user": {
+      "schema": "auth",
+      "table_name": "mfa_factors",
+      "name": "unique_phone_factor_per_user",
+      "storage_params": [],
+      "statistics_target": [
+        -1,
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2,
+        9
+      ],
+      "column_collations": [
+        null,
+        null
+      ],
+      "operator_classes": [
+        "default",
+        "default"
+      ],
+      "column_options": [
+        0,
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX unique_phone_factor_per_user ON auth.mfa_factors USING btree (user_id, phone)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.mfa_factors.mfa_factors_last_challenged_at_key": {
+      "schema": "auth",
+      "table_name": "mfa_factors",
+      "name": "mfa_factors_last_challenged_at_key",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -5326,7 +5286,7 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        2
+        10
       ],
       "column_collations": [
         null
@@ -5344,7 +5304,7 @@
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX oauth_authorizations_authorization_id_key ON auth.oauth_authorizations USING btree (authorization_id)",
+      "definition": "CREATE UNIQUE INDEX mfa_factors_last_challenged_at_key ON auth.mfa_factors USING btree (last_challenged_at)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -5388,17 +5348,17 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.oauth_authorizations.oauth_auth_pending_exp_idx": {
+    "index:auth.oauth_authorizations.oauth_authorizations_authorization_id_key": {
       "schema": "auth",
       "table_name": "oauth_authorizations",
-      "name": "oauth_auth_pending_exp_idx",
+      "name": "oauth_authorizations_authorization_id_key",
       "storage_params": [],
       "statistics_target": [
         -1
       ],
       "index_type": "btree",
       "tablespace": null,
-      "is_unique": false,
+      "is_unique": true,
       "is_primary": false,
       "is_exclusion": false,
       "nulls_not_distinct": false,
@@ -5406,7 +5366,7 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        15
+        2
       ],
       "column_collations": [
         null
@@ -5418,13 +5378,13 @@
         0
       ],
       "index_expressions": null,
-      "partial_predicate": "(status = 'pending'::auth.oauth_authorization_status)",
+      "partial_predicate": null,
       "table_relkind": "r",
-      "is_owned_by_constraint": false,
+      "is_owned_by_constraint": true,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE INDEX oauth_auth_pending_exp_idx ON auth.oauth_authorizations USING btree (expires_at) WHERE status = 'pending'::auth.oauth_authorization_status",
+      "definition": "CREATE UNIQUE INDEX oauth_authorizations_authorization_id_key ON auth.oauth_authorizations USING btree (authorization_id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -5465,6 +5425,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX oauth_authorizations_authorization_code_key ON auth.oauth_authorizations USING btree (authorization_code)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.oauth_authorizations.oauth_auth_pending_exp_idx": {
+      "schema": "auth",
+      "table_name": "oauth_authorizations",
+      "name": "oauth_auth_pending_exp_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        15
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": "(status = 'pending'::auth.oauth_authorization_status)",
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX oauth_auth_pending_exp_idx ON auth.oauth_authorizations USING btree (expires_at) WHERE status = 'pending'::auth.oauth_authorization_status",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -5628,6 +5628,91 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
+    "index:auth.oauth_consents.oauth_consents_active_user_client_idx": {
+      "schema": "auth",
+      "table_name": "oauth_consents",
+      "name": "oauth_consents_active_user_client_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1,
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2,
+        3
+      ],
+      "column_collations": [
+        null,
+        null
+      ],
+      "operator_classes": [
+        "default",
+        "default"
+      ],
+      "column_options": [
+        0,
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": "(revoked_at IS NULL)",
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX oauth_consents_active_user_client_idx ON auth.oauth_consents USING btree (user_id, client_id) WHERE revoked_at IS NULL",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.oauth_consents.oauth_consents_active_client_idx": {
+      "schema": "auth",
+      "table_name": "oauth_consents",
+      "name": "oauth_consents_active_client_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        3
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": "(revoked_at IS NULL)",
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX oauth_consents_active_client_idx ON auth.oauth_consents USING btree (client_id) WHERE revoked_at IS NULL",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
     "index:auth.oauth_consents.oauth_consents_user_order_idx": {
       "schema": "auth",
       "table_name": "oauth_consents",
@@ -5670,6 +5755,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE INDEX oauth_consents_user_order_idx ON auth.oauth_consents USING btree (user_id, granted_at DESC)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.oauth_consents.oauth_consents_pkey": {
+      "schema": "auth",
+      "table_name": "oauth_consents",
+      "name": "oauth_consents_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX oauth_consents_pkey ON auth.oauth_consents USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -5718,131 +5843,6 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.oauth_consents.oauth_consents_pkey": {
-      "schema": "auth",
-      "table_name": "oauth_consents",
-      "name": "oauth_consents_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX oauth_consents_pkey ON auth.oauth_consents USING btree (id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.oauth_consents.oauth_consents_active_client_idx": {
-      "schema": "auth",
-      "table_name": "oauth_consents",
-      "name": "oauth_consents_active_client_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        3
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": "(revoked_at IS NULL)",
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX oauth_consents_active_client_idx ON auth.oauth_consents USING btree (client_id) WHERE revoked_at IS NULL",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.oauth_consents.oauth_consents_active_user_client_idx": {
-      "schema": "auth",
-      "table_name": "oauth_consents",
-      "name": "oauth_consents_active_user_client_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1,
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2,
-        3
-      ],
-      "column_collations": [
-        null,
-        null
-      ],
-      "operator_classes": [
-        "default",
-        "default"
-      ],
-      "column_options": [
-        0,
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": "(revoked_at IS NULL)",
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX oauth_consents_active_user_client_idx ON auth.oauth_consents USING btree (user_id, client_id) WHERE revoked_at IS NULL",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
     "index:auth.one_time_tokens.one_time_tokens_token_hash_hash_idx": {
       "schema": "auth",
       "table_name": "one_time_tokens",
@@ -5880,6 +5880,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE INDEX one_time_tokens_token_hash_hash_idx ON auth.one_time_tokens USING hash (token_hash)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.one_time_tokens.one_time_tokens_pkey": {
+      "schema": "auth",
+      "table_name": "one_time_tokens",
+      "name": "one_time_tokens_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX one_time_tokens_pkey ON auth.one_time_tokens USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -5928,46 +5968,6 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.one_time_tokens.one_time_tokens_pkey": {
-      "schema": "auth",
-      "table_name": "one_time_tokens",
-      "name": "one_time_tokens_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX one_time_tokens_pkey ON auth.one_time_tokens USING btree (id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
     "index:auth.one_time_tokens.one_time_tokens_relates_to_hash_idx": {
       "schema": "auth",
       "table_name": "one_time_tokens",
@@ -6005,6 +6005,86 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE INDEX one_time_tokens_relates_to_hash_idx ON auth.one_time_tokens USING hash (relates_to)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.refresh_tokens.refresh_tokens_parent_idx": {
+      "schema": "auth",
+      "table_name": "refresh_tokens",
+      "name": "refresh_tokens_parent_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        8
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX refresh_tokens_parent_idx ON auth.refresh_tokens USING btree (parent)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.refresh_tokens.refresh_tokens_updated_at_idx": {
+      "schema": "auth",
+      "table_name": "refresh_tokens",
+      "name": "refresh_tokens_updated_at_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        7
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        3
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX refresh_tokens_updated_at_idx ON auth.refresh_tokens USING btree (updated_at DESC)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -6053,166 +6133,6 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.refresh_tokens.refresh_tokens_pkey": {
-      "schema": "auth",
-      "table_name": "refresh_tokens",
-      "name": "refresh_tokens_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX refresh_tokens_pkey ON auth.refresh_tokens USING btree (id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.refresh_tokens.refresh_tokens_instance_id_idx": {
-      "schema": "auth",
-      "table_name": "refresh_tokens",
-      "name": "refresh_tokens_instance_id_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX refresh_tokens_instance_id_idx ON auth.refresh_tokens USING btree (instance_id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.refresh_tokens.refresh_tokens_token_unique": {
-      "schema": "auth",
-      "table_name": "refresh_tokens",
-      "name": "refresh_tokens_token_unique",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        3
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX refresh_tokens_token_unique ON auth.refresh_tokens USING btree (token)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.refresh_tokens.refresh_tokens_parent_idx": {
-      "schema": "auth",
-      "table_name": "refresh_tokens",
-      "name": "refresh_tokens_parent_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        8
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX refresh_tokens_parent_idx ON auth.refresh_tokens USING btree (parent)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
     "index:auth.refresh_tokens.refresh_tokens_session_id_revoked_idx": {
       "schema": "auth",
       "table_name": "refresh_tokens",
@@ -6258,10 +6178,50 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.refresh_tokens.refresh_tokens_updated_at_idx": {
+    "index:auth.refresh_tokens.refresh_tokens_token_unique": {
       "schema": "auth",
       "table_name": "refresh_tokens",
-      "name": "refresh_tokens_updated_at_idx",
+      "name": "refresh_tokens_token_unique",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        3
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX refresh_tokens_token_unique ON auth.refresh_tokens USING btree (token)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.refresh_tokens.refresh_tokens_instance_id_idx": {
+      "schema": "auth",
+      "table_name": "refresh_tokens",
+      "name": "refresh_tokens_instance_id_idx",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -6276,7 +6236,7 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        7
+        1
       ],
       "column_collations": [
         null
@@ -6285,7 +6245,7 @@
         "default"
       ],
       "column_options": [
-        3
+        0
       ],
       "index_expressions": null,
       "partial_predicate": null,
@@ -6294,22 +6254,22 @@
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE INDEX refresh_tokens_updated_at_idx ON auth.refresh_tokens USING btree (updated_at DESC)",
+      "definition": "CREATE INDEX refresh_tokens_instance_id_idx ON auth.refresh_tokens USING btree (instance_id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.saml_providers.saml_providers_sso_provider_id_idx": {
+    "index:auth.refresh_tokens.refresh_tokens_pkey": {
       "schema": "auth",
-      "table_name": "saml_providers",
-      "name": "saml_providers_sso_provider_id_idx",
+      "table_name": "refresh_tokens",
+      "name": "refresh_tokens_pkey",
       "storage_params": [],
       "statistics_target": [
         -1
       ],
       "index_type": "btree",
       "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
+      "is_unique": true,
+      "is_primary": true,
       "is_exclusion": false,
       "nulls_not_distinct": false,
       "immediate": true,
@@ -6330,11 +6290,11 @@
       "index_expressions": null,
       "partial_predicate": null,
       "table_relkind": "r",
-      "is_owned_by_constraint": false,
+      "is_owned_by_constraint": true,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE INDEX saml_providers_sso_provider_id_idx ON auth.saml_providers USING btree (sso_provider_id)",
+      "definition": "CREATE UNIQUE INDEX refresh_tokens_pkey ON auth.refresh_tokens USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -6415,6 +6375,86 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX saml_providers_entity_id_key ON auth.saml_providers USING btree (entity_id)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.saml_providers.saml_providers_sso_provider_id_idx": {
+      "schema": "auth",
+      "table_name": "saml_providers",
+      "name": "saml_providers_sso_provider_id_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX saml_providers_sso_provider_id_idx ON auth.saml_providers USING btree (sso_provider_id)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.saml_relay_states.saml_relay_states_pkey": {
+      "schema": "auth",
+      "table_name": "saml_relay_states",
+      "name": "saml_relay_states_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX saml_relay_states_pkey ON auth.saml_relay_states USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -6535,46 +6575,6 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE INDEX saml_relay_states_created_at_idx ON auth.saml_relay_states USING btree (created_at DESC)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.saml_relay_states.saml_relay_states_pkey": {
-      "schema": "auth",
-      "table_name": "saml_relay_states",
-      "name": "saml_relay_states_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX saml_relay_states_pkey ON auth.saml_relay_states USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -6823,46 +6823,6 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.sso_domains.sso_domains_sso_provider_id_idx": {
-      "schema": "auth",
-      "table_name": "sso_domains",
-      "name": "sso_domains_sso_provider_id_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX sso_domains_sso_provider_id_idx ON auth.sso_domains USING btree (sso_provider_id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
     "index:auth.sso_domains.sso_domains_pkey": {
       "schema": "auth",
       "table_name": "sso_domains",
@@ -6900,6 +6860,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX sso_domains_pkey ON auth.sso_domains USING btree (id)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.sso_domains.sso_domains_sso_provider_id_idx": {
+      "schema": "auth",
+      "table_name": "sso_domains",
+      "name": "sso_domains_sso_provider_id_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX sso_domains_sso_provider_id_idx ON auth.sso_domains USING btree (sso_provider_id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -6943,17 +6943,17 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.sso_providers.sso_providers_resource_id_idx": {
+    "index:auth.sso_providers.sso_providers_resource_id_pattern_idx": {
       "schema": "auth",
       "table_name": "sso_providers",
-      "name": "sso_providers_resource_id_idx",
+      "name": "sso_providers_resource_id_pattern_idx",
       "storage_params": [],
       "statistics_target": [
         -1
       ],
       "index_type": "btree",
       "tablespace": null,
-      "is_unique": true,
+      "is_unique": false,
       "is_primary": false,
       "is_exclusion": false,
       "nulls_not_distinct": false,
@@ -6961,25 +6961,25 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        0
+        2
       ],
       "column_collations": [
         null
       ],
       "operator_classes": [
-        "pg_catalog.text_ops"
+        "pg_catalog.text_pattern_ops"
       ],
       "column_options": [
         0
       ],
-      "index_expressions": "lower(resource_id)",
+      "index_expressions": null,
       "partial_predicate": null,
       "table_relkind": "r",
       "is_owned_by_constraint": false,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX sso_providers_resource_id_idx ON auth.sso_providers USING btree (lower(resource_id))",
+      "definition": "CREATE INDEX sso_providers_resource_id_pattern_idx ON auth.sso_providers USING btree (resource_id text_pattern_ops)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -7023,10 +7023,90 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.sso_providers.sso_providers_resource_id_pattern_idx": {
+    "index:auth.sso_providers.sso_providers_resource_id_idx": {
       "schema": "auth",
       "table_name": "sso_providers",
-      "name": "sso_providers_resource_id_pattern_idx",
+      "name": "sso_providers_resource_id_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        0
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "pg_catalog.text_ops"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": "lower(resource_id)",
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX sso_providers_resource_id_idx ON auth.sso_providers USING btree (lower(resource_id))",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.users.users_phone_key": {
+      "schema": "auth",
+      "table_name": "users",
+      "name": "users_phone_key",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        22
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX users_phone_key ON auth.users USING btree (phone)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.users.users_instance_id_idx": {
+      "schema": "auth",
+      "table_name": "users",
+      "name": "users_instance_id_idx",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -7041,13 +7121,13 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        2
+        1
       ],
       "column_collations": [
         null
       ],
       "operator_classes": [
-        "pg_catalog.text_pattern_ops"
+        "default"
       ],
       "column_options": [
         0
@@ -7059,14 +7139,14 @@
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE INDEX sso_providers_resource_id_pattern_idx ON auth.sso_providers USING btree (resource_id text_pattern_ops)",
+      "definition": "CREATE INDEX users_instance_id_idx ON auth.users USING btree (instance_id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.users.confirmation_token_idx": {
+    "index:auth.users.users_email_partial_key": {
       "schema": "auth",
       "table_name": "users",
-      "name": "confirmation_token_idx",
+      "name": "users_email_partial_key",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -7081,7 +7161,7 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        9
+        5
       ],
       "column_collations": [
         null
@@ -7093,20 +7173,20 @@
         0
       ],
       "index_expressions": null,
-      "partial_predicate": "((confirmation_token)::text !~ '^[0-9 ]*$'::text)",
+      "partial_predicate": "(is_sso_user = false)",
       "table_relkind": "r",
       "is_owned_by_constraint": false,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX confirmation_token_idx ON auth.users USING btree (confirmation_token) WHERE confirmation_token::text !~ '^[0-9 ]*$'::text",
-      "comment": null,
+      "definition": "CREATE UNIQUE INDEX users_email_partial_key ON auth.users USING btree (email) WHERE is_sso_user = false",
+      "comment": "Auth: A partial unique index that applies only when is_sso_user is false",
       "owner": "supabase_auth_admin"
     },
-    "index:auth.users.recovery_token_idx": {
+    "index:auth.users.reauthentication_token_idx": {
       "schema": "auth",
       "table_name": "users",
-      "name": "recovery_token_idx",
+      "name": "reauthentication_token_idx",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -7121,7 +7201,7 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        11
+        31
       ],
       "column_collations": [
         null
@@ -7133,13 +7213,13 @@
         0
       ],
       "index_expressions": null,
-      "partial_predicate": "((recovery_token)::text !~ '^[0-9 ]*$'::text)",
+      "partial_predicate": "((reauthentication_token)::text !~ '^[0-9 ]*$'::text)",
       "table_relkind": "r",
       "is_owned_by_constraint": false,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX recovery_token_idx ON auth.users USING btree (recovery_token) WHERE recovery_token::text !~ '^[0-9 ]*$'::text",
+      "definition": "CREATE UNIQUE INDEX reauthentication_token_idx ON auth.users USING btree (reauthentication_token) WHERE reauthentication_token::text !~ '^[0-9 ]*$'::text",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -7180,86 +7260,6 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX email_change_token_current_idx ON auth.users USING btree (email_change_token_current) WHERE email_change_token_current::text !~ '^[0-9 ]*$'::text",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.users.email_change_token_new_idx": {
-      "schema": "auth",
-      "table_name": "users",
-      "name": "email_change_token_new_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        13
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": "((email_change_token_new)::text !~ '^[0-9 ]*$'::text)",
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX email_change_token_new_idx ON auth.users USING btree (email_change_token_new) WHERE email_change_token_new::text !~ '^[0-9 ]*$'::text",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.users.reauthentication_token_idx": {
-      "schema": "auth",
-      "table_name": "users",
-      "name": "reauthentication_token_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        31
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": "((reauthentication_token)::text !~ '^[0-9 ]*$'::text)",
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX reauthentication_token_idx ON auth.users USING btree (reauthentication_token) WHERE reauthentication_token::text !~ '^[0-9 ]*$'::text",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -7308,10 +7308,10 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.users.users_email_partial_key": {
+    "index:auth.users.recovery_token_idx": {
       "schema": "auth",
       "table_name": "users",
-      "name": "users_email_partial_key",
+      "name": "recovery_token_idx",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -7326,7 +7326,7 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        5
+        11
       ],
       "column_collations": [
         null
@@ -7338,67 +7338,27 @@
         0
       ],
       "index_expressions": null,
-      "partial_predicate": "(is_sso_user = false)",
+      "partial_predicate": "((recovery_token)::text !~ '^[0-9 ]*$'::text)",
       "table_relkind": "r",
       "is_owned_by_constraint": false,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX users_email_partial_key ON auth.users USING btree (email) WHERE is_sso_user = false",
-      "comment": "Auth: A partial unique index that applies only when is_sso_user is false",
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.users.users_phone_key": {
-      "schema": "auth",
-      "table_name": "users",
-      "name": "users_phone_key",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        22
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX users_phone_key ON auth.users USING btree (phone)",
+      "definition": "CREATE UNIQUE INDEX recovery_token_idx ON auth.users USING btree (recovery_token) WHERE recovery_token::text !~ '^[0-9 ]*$'::text",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.users.users_is_anonymous_idx": {
+    "index:auth.users.confirmation_token_idx": {
       "schema": "auth",
       "table_name": "users",
-      "name": "users_is_anonymous_idx",
+      "name": "confirmation_token_idx",
       "storage_params": [],
       "statistics_target": [
         -1
       ],
       "index_type": "btree",
       "tablespace": null,
-      "is_unique": false,
+      "is_unique": true,
       "is_primary": false,
       "is_exclusion": false,
       "nulls_not_distinct": false,
@@ -7406,7 +7366,7 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        35
+        9
       ],
       "column_collations": [
         null
@@ -7418,13 +7378,13 @@
         0
       ],
       "index_expressions": null,
-      "partial_predicate": null,
+      "partial_predicate": "((confirmation_token)::text !~ '^[0-9 ]*$'::text)",
       "table_relkind": "r",
       "is_owned_by_constraint": false,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE INDEX users_is_anonymous_idx ON auth.users USING btree (is_anonymous)",
+      "definition": "CREATE UNIQUE INDEX confirmation_token_idx ON auth.users USING btree (confirmation_token) WHERE confirmation_token::text !~ '^[0-9 ]*$'::text",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -7468,10 +7428,50 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.users.users_instance_id_idx": {
+    "index:auth.users.email_change_token_new_idx": {
       "schema": "auth",
       "table_name": "users",
-      "name": "users_instance_id_idx",
+      "name": "email_change_token_new_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        13
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": "((email_change_token_new)::text !~ '^[0-9 ]*$'::text)",
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX email_change_token_new_idx ON auth.users USING btree (email_change_token_new) WHERE email_change_token_new::text !~ '^[0-9 ]*$'::text",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.users.users_is_anonymous_idx": {
+      "schema": "auth",
+      "table_name": "users",
+      "name": "users_is_anonymous_idx",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -7486,7 +7486,7 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        1
+        35
       ],
       "column_collations": [
         null
@@ -7504,47 +7504,7 @@
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE INDEX users_instance_id_idx ON auth.users USING btree (instance_id)",
-      "comment": null,
-      "owner": "supabase_auth_admin"
-    },
-    "index:auth.webauthn_challenges.webauthn_challenges_pkey": {
-      "schema": "auth",
-      "table_name": "webauthn_challenges",
-      "name": "webauthn_challenges_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX webauthn_challenges_pkey ON auth.webauthn_challenges USING btree (id)",
+      "definition": "CREATE INDEX users_is_anonymous_idx ON auth.users USING btree (is_anonymous)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -7628,10 +7588,10 @@
       "comment": null,
       "owner": "supabase_auth_admin"
     },
-    "index:auth.webauthn_credentials.webauthn_credentials_pkey": {
+    "index:auth.webauthn_challenges.webauthn_challenges_pkey": {
       "schema": "auth",
-      "table_name": "webauthn_credentials",
-      "name": "webauthn_credentials_pkey",
+      "table_name": "webauthn_challenges",
+      "name": "webauthn_challenges_pkey",
       "storage_params": [],
       "statistics_target": [
         -1
@@ -7664,7 +7624,7 @@
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX webauthn_credentials_pkey ON auth.webauthn_credentials USING btree (id)",
+      "definition": "CREATE UNIQUE INDEX webauthn_challenges_pkey ON auth.webauthn_challenges USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -7745,6 +7705,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE INDEX webauthn_credentials_user_id_idx ON auth.webauthn_credentials USING btree (user_id)",
+      "comment": null,
+      "owner": "supabase_auth_admin"
+    },
+    "index:auth.webauthn_credentials.webauthn_credentials_pkey": {
+      "schema": "auth",
+      "table_name": "webauthn_credentials",
+      "name": "webauthn_credentials_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX webauthn_credentials_pkey ON auth.webauthn_credentials USING btree (id)",
       "comment": null,
       "owner": "supabase_auth_admin"
     },
@@ -7868,6 +7868,46 @@
       "comment": null,
       "owner": "postgres"
     },
+    "index:public.carreras.carreras_codigo_uniq": {
+      "schema": "public",
+      "table_name": "carreras",
+      "name": "carreras_codigo_uniq",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        3
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX carreras_codigo_uniq ON public.carreras USING btree (codigo)",
+      "comment": null,
+      "owner": "postgres"
+    },
     "index:public.categorias_pregunta.categorias_pregunta_pkey": {
       "schema": "public",
       "table_name": "categorias_pregunta",
@@ -7905,6 +7945,126 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX categorias_pregunta_pkey ON public.categorias_pregunta USING btree (id)",
+      "comment": null,
+      "owner": "postgres"
+    },
+    "index:public.configuracion.configuracion_clave_key": {
+      "schema": "public",
+      "table_name": "configuracion",
+      "name": "configuracion_clave_key",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX configuracion_clave_key ON public.configuracion USING btree (clave)",
+      "comment": null,
+      "owner": "postgres"
+    },
+    "index:public.configuracion.configuracion_pkey": {
+      "schema": "public",
+      "table_name": "configuracion",
+      "name": "configuracion_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX configuracion_pkey ON public.configuracion USING btree (id)",
+      "comment": null,
+      "owner": "postgres"
+    },
+    "index:public.correlativas.correlativas_pkey": {
+      "schema": "public",
+      "table_name": "correlativas",
+      "name": "correlativas_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX correlativas_pkey ON public.correlativas USING btree (id)",
       "comment": null,
       "owner": "postgres"
     },
@@ -7950,46 +8110,6 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX correlativas_materia_id_materia_requerida_id_key ON public.correlativas USING btree (materia_id, materia_requerida_id)",
-      "comment": null,
-      "owner": "postgres"
-    },
-    "index:public.correlativas.correlativas_pkey": {
-      "schema": "public",
-      "table_name": "correlativas",
-      "name": "correlativas_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX correlativas_pkey ON public.correlativas USING btree (id)",
       "comment": null,
       "owner": "postgres"
     },
@@ -8110,6 +8230,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX encuestas_pkey ON public.encuestas USING btree (id)",
+      "comment": null,
+      "owner": "postgres"
+    },
+    "index:public.encuestas.encuestas_tipo_activa_uniq": {
+      "schema": "public",
+      "table_name": "encuestas",
+      "name": "encuestas_tipo_activa_uniq",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        4
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": "(activa = true)",
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX encuestas_tipo_activa_uniq ON public.encuestas USING btree (tipo) WHERE activa = true",
       "comment": null,
       "owner": "postgres"
     },
@@ -8353,6 +8513,46 @@
       "comment": null,
       "owner": "postgres"
     },
+    "index:public.indicadores.indicadores_nombre_uniq": {
+      "schema": "public",
+      "table_name": "indicadores",
+      "name": "indicadores_nombre_uniq",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX indicadores_nombre_uniq ON public.indicadores USING btree (nombre)",
+      "comment": null,
+      "owner": "postgres"
+    },
     "index:public.intervenciones.intervenciones_pkey": {
       "schema": "public",
       "table_name": "intervenciones",
@@ -8478,6 +8678,46 @@
       "comment": null,
       "owner": "postgres"
     },
+    "index:public.plan_estudios.plan_estudios_pkey": {
+      "schema": "public",
+      "table_name": "plan_estudios",
+      "name": "plan_estudios_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX plan_estudios_pkey ON public.plan_estudios USING btree (id)",
+      "comment": null,
+      "owner": "postgres"
+    },
     "index:public.plan_estudios.plan_estudios_carrera_id_materia_id_key": {
       "schema": "public",
       "table_name": "plan_estudios",
@@ -8520,46 +8760,6 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX plan_estudios_carrera_id_materia_id_key ON public.plan_estudios USING btree (carrera_id, materia_id)",
-      "comment": null,
-      "owner": "postgres"
-    },
-    "index:public.plan_estudios.plan_estudios_pkey": {
-      "schema": "public",
-      "table_name": "plan_estudios",
-      "name": "plan_estudios_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX plan_estudios_pkey ON public.plan_estudios USING btree (id)",
       "comment": null,
       "owner": "postgres"
     },
@@ -8688,46 +8888,6 @@
       "comment": null,
       "owner": "postgres"
     },
-    "index:public.respuestas.respuestas_pkey": {
-      "schema": "public",
-      "table_name": "respuestas",
-      "name": "respuestas_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX respuestas_pkey ON public.respuestas USING btree (id)",
-      "comment": null,
-      "owner": "postgres"
-    },
     "index:public.respuestas.respuestas_sesion_id_pregunta_id_materia_id_key": {
       "schema": "public",
       "table_name": "respuestas",
@@ -8775,6 +8935,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX respuestas_sesion_id_pregunta_id_materia_id_key ON public.respuestas USING btree (sesion_id, pregunta_id, materia_id)",
+      "comment": null,
+      "owner": "postgres"
+    },
+    "index:public.respuestas.respuestas_pkey": {
+      "schema": "public",
+      "table_name": "respuestas",
+      "name": "respuestas_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX respuestas_pkey ON public.respuestas USING btree (id)",
       "comment": null,
       "owner": "postgres"
     },
@@ -9028,46 +9228,6 @@
       "comment": null,
       "owner": "postgres"
     },
-    "index:public.usuarios.usuarios_pkey": {
-      "schema": "public",
-      "table_name": "usuarios",
-      "name": "usuarios_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX usuarios_pkey ON public.usuarios USING btree (id)",
-      "comment": null,
-      "owner": "postgres"
-    },
     "index:public.usuarios.usuarios_email_key": {
       "schema": "public",
       "table_name": "usuarios",
@@ -9105,6 +9265,46 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX usuarios_email_key ON public.usuarios USING btree (email)",
+      "comment": null,
+      "owner": "postgres"
+    },
+    "index:public.usuarios.usuarios_pkey": {
+      "schema": "public",
+      "table_name": "usuarios",
+      "name": "usuarios_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX usuarios_pkey ON public.usuarios USING btree (id)",
       "comment": null,
       "owner": "postgres"
     },
@@ -9198,51 +9398,6 @@
       "comment": null,
       "owner": "supabase_realtime_admin"
     },
-    "index:realtime.messages_2026_06_26.messages_2026_06_26_pkey": {
-      "schema": "realtime",
-      "table_name": "messages_2026_06_26",
-      "name": "messages_2026_06_26_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1,
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        8,
-        7
-      ],
-      "column_collations": [
-        null,
-        null
-      ],
-      "operator_classes": [
-        "default",
-        "default"
-      ],
-      "column_options": [
-        0,
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": true,
-      "parent_index_name": "realtime.messages_pkey",
-      "definition": "CREATE UNIQUE INDEX messages_2026_06_26_pkey ON realtime.messages_2026_06_26 USING btree (id, inserted_at)",
-      "comment": null,
-      "owner": "supabase_realtime_admin"
-    },
     "index:realtime.messages_2026_06_26.messages_2026_06_26_inserted_at_topic_idx": {
       "schema": "realtime",
       "table_name": "messages_2026_06_26",
@@ -9285,6 +9440,51 @@
       "is_index_partition": true,
       "parent_index_name": "realtime.messages_inserted_at_topic_index",
       "definition": "CREATE INDEX messages_2026_06_26_inserted_at_topic_idx ON realtime.messages_2026_06_26 USING btree (inserted_at DESC, topic) WHERE extension = 'broadcast'::text AND private IS TRUE",
+      "comment": null,
+      "owner": "supabase_realtime_admin"
+    },
+    "index:realtime.messages_2026_06_26.messages_2026_06_26_pkey": {
+      "schema": "realtime",
+      "table_name": "messages_2026_06_26",
+      "name": "messages_2026_06_26_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1,
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        8,
+        7
+      ],
+      "column_collations": [
+        null,
+        null
+      ],
+      "operator_classes": [
+        "default",
+        "default"
+      ],
+      "column_options": [
+        0,
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": true,
+      "parent_index_name": "realtime.messages_pkey",
+      "definition": "CREATE UNIQUE INDEX messages_2026_06_26_pkey ON realtime.messages_2026_06_26 USING btree (id, inserted_at)",
       "comment": null,
       "owner": "supabase_realtime_admin"
     },
@@ -9648,6 +9848,96 @@
       "comment": null,
       "owner": "supabase_realtime_admin"
     },
+    "index:realtime.messages_2026_07_01.messages_2026_07_01_pkey": {
+      "schema": "realtime",
+      "table_name": "messages_2026_07_01",
+      "name": "messages_2026_07_01_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1,
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        8,
+        7
+      ],
+      "column_collations": [
+        null,
+        null
+      ],
+      "operator_classes": [
+        "default",
+        "default"
+      ],
+      "column_options": [
+        0,
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": true,
+      "parent_index_name": "realtime.messages_pkey",
+      "definition": "CREATE UNIQUE INDEX messages_2026_07_01_pkey ON realtime.messages_2026_07_01 USING btree (id, inserted_at)",
+      "comment": null,
+      "owner": "supabase_realtime_admin"
+    },
+    "index:realtime.messages_2026_07_01.messages_2026_07_01_inserted_at_topic_idx": {
+      "schema": "realtime",
+      "table_name": "messages_2026_07_01",
+      "name": "messages_2026_07_01_inserted_at_topic_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1,
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        7,
+        1
+      ],
+      "column_collations": [
+        null,
+        null
+      ],
+      "operator_classes": [
+        "default",
+        "default"
+      ],
+      "column_options": [
+        3,
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": "((extension = 'broadcast'::text) AND (private IS TRUE))",
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": true,
+      "parent_index_name": "realtime.messages_inserted_at_topic_index",
+      "definition": "CREATE INDEX messages_2026_07_01_inserted_at_topic_idx ON realtime.messages_2026_07_01 USING btree (inserted_at DESC, topic) WHERE extension = 'broadcast'::text AND private IS TRUE",
+      "comment": null,
+      "owner": "supabase_realtime_admin"
+    },
     "index:realtime.schema_migrations.schema_migrations_pkey": {
       "schema": "realtime",
       "table_name": "schema_migrations",
@@ -9685,6 +9975,66 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX schema_migrations_pkey ON realtime.schema_migrations USING btree (version)",
+      "comment": null,
+      "owner": "supabase_admin"
+    },
+    "index:realtime.subscription.subscription_subscription_id_entity_filters_action_filter_selec": {
+      "schema": "realtime",
+      "table_name": "subscription",
+      "name": "subscription_subscription_id_entity_filters_action_filter_selec",
+      "storage_params": [],
+      "statistics_target": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2,
+        4,
+        5,
+        10,
+        0
+      ],
+      "column_collations": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "operator_classes": [
+        "default",
+        "default",
+        "pg_catalog.array_ops",
+        "default",
+        "pg_catalog.array_ops"
+      ],
+      "column_options": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "index_expressions": "COALESCE(selected_columns, '{}'::text[])",
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX subscription_subscription_id_entity_filters_action_filter_selec ON realtime.subscription USING btree (subscription_id, entity, filters, action_filter, COALESCE(selected_columns, '{}'::text[]))",
       "comment": null,
       "owner": "supabase_admin"
     },
@@ -9768,16 +10118,12 @@
       "comment": null,
       "owner": "supabase_admin"
     },
-    "index:realtime.subscription.subscription_subscription_id_entity_filters_action_filter_selec": {
-      "schema": "realtime",
-      "table_name": "subscription",
-      "name": "subscription_subscription_id_entity_filters_action_filter_selec",
+    "index:storage.buckets.bname": {
+      "schema": "storage",
+      "table_name": "buckets",
+      "name": "bname",
       "storage_params": [],
       "statistics_target": [
-        -1,
-        -1,
-        -1,
-        -1,
         -1
       ],
       "index_type": "btree",
@@ -9790,43 +10136,27 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        2,
-        4,
-        5,
-        10,
-        0
+        2
       ],
       "column_collations": [
-        null,
-        null,
-        null,
-        null,
         null
       ],
       "operator_classes": [
-        "default",
-        "default",
-        "pg_catalog.array_ops",
-        "default",
-        "pg_catalog.array_ops"
+        "default"
       ],
       "column_options": [
-        0,
-        0,
-        0,
-        0,
         0
       ],
-      "index_expressions": "COALESCE(selected_columns, '{}'::text[])",
+      "index_expressions": null,
       "partial_predicate": null,
       "table_relkind": "r",
       "is_owned_by_constraint": false,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX subscription_subscription_id_entity_filters_action_filter_selec ON realtime.subscription USING btree (subscription_id, entity, filters, action_filter, COALESCE(selected_columns, '{}'::text[]))",
+      "definition": "CREATE UNIQUE INDEX bname ON storage.buckets USING btree (name)",
       "comment": null,
-      "owner": "supabase_admin"
+      "owner": "supabase_storage_admin"
     },
     "index:storage.buckets.buckets_pkey": {
       "schema": "storage",
@@ -9865,46 +10195,6 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX buckets_pkey ON storage.buckets USING btree (id)",
-      "comment": null,
-      "owner": "supabase_storage_admin"
-    },
-    "index:storage.buckets.bname": {
-      "schema": "storage",
-      "table_name": "buckets",
-      "name": "bname",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX bname ON storage.buckets USING btree (name)",
       "comment": null,
       "owner": "supabase_storage_admin"
     },
@@ -10113,6 +10403,86 @@
       "comment": null,
       "owner": "supabase_storage_admin"
     },
+    "index:storage.iceberg_tables.iceberg_tables_pkey": {
+      "schema": "storage",
+      "table_name": "iceberg_tables",
+      "name": "iceberg_tables_pkey",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": true,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        1
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": true,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX iceberg_tables_pkey ON storage.iceberg_tables USING btree (id)",
+      "comment": null,
+      "owner": "supabase_storage_admin"
+    },
+    "index:storage.iceberg_tables.idx_iceberg_tables_location": {
+      "schema": "storage",
+      "table_name": "iceberg_tables",
+      "name": "idx_iceberg_tables_location",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": true,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        5
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "default"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE UNIQUE INDEX idx_iceberg_tables_location ON storage.iceberg_tables USING btree (location)",
+      "comment": null,
+      "owner": "supabase_storage_admin"
+    },
     "index:storage.iceberg_tables.idx_iceberg_tables_namespace_id": {
       "schema": "storage",
       "table_name": "iceberg_tables",
@@ -10163,126 +10533,6 @@
       "comment": null,
       "owner": "supabase_storage_admin"
     },
-    "index:storage.iceberg_tables.idx_iceberg_tables_location": {
-      "schema": "storage",
-      "table_name": "iceberg_tables",
-      "name": "idx_iceberg_tables_location",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        5
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX idx_iceberg_tables_location ON storage.iceberg_tables USING btree (location)",
-      "comment": null,
-      "owner": "supabase_storage_admin"
-    },
-    "index:storage.iceberg_tables.iceberg_tables_pkey": {
-      "schema": "storage",
-      "table_name": "iceberg_tables",
-      "name": "iceberg_tables_pkey",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": true,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        1
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX iceberg_tables_pkey ON storage.iceberg_tables USING btree (id)",
-      "comment": null,
-      "owner": "supabase_storage_admin"
-    },
-    "index:storage.migrations.migrations_name_key": {
-      "schema": "storage",
-      "table_name": "migrations",
-      "name": "migrations_name_key",
-      "storage_params": [],
-      "statistics_target": [
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": true,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2
-      ],
-      "column_collations": [
-        null
-      ],
-      "operator_classes": [
-        "default"
-      ],
-      "column_options": [
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": true,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE UNIQUE INDEX migrations_name_key ON storage.migrations USING btree (name)",
-      "comment": null,
-      "owner": "supabase_storage_admin"
-    },
     "index:storage.migrations.migrations_pkey": {
       "schema": "storage",
       "table_name": "migrations",
@@ -10323,17 +10573,17 @@
       "comment": null,
       "owner": "supabase_storage_admin"
     },
-    "index:storage.objects.name_prefix_search": {
+    "index:storage.migrations.migrations_name_key": {
       "schema": "storage",
-      "table_name": "objects",
-      "name": "name_prefix_search",
+      "table_name": "migrations",
+      "name": "migrations_name_key",
       "storage_params": [],
       "statistics_target": [
         -1
       ],
       "index_type": "btree",
       "tablespace": null,
-      "is_unique": false,
+      "is_unique": true,
       "is_primary": false,
       "is_exclusion": false,
       "nulls_not_distinct": false,
@@ -10341,13 +10591,13 @@
       "is_clustered": false,
       "is_replica_identity": false,
       "key_columns": [
-        3
+        2
       ],
       "column_collations": [
         null
       ],
       "operator_classes": [
-        "pg_catalog.text_pattern_ops"
+        "default"
       ],
       "column_options": [
         0
@@ -10355,56 +10605,11 @@
       "index_expressions": null,
       "partial_predicate": null,
       "table_relkind": "r",
-      "is_owned_by_constraint": false,
+      "is_owned_by_constraint": true,
       "is_partitioned_index": false,
       "is_index_partition": false,
       "parent_index_name": null,
-      "definition": "CREATE INDEX name_prefix_search ON storage.objects USING btree (name text_pattern_ops)",
-      "comment": null,
-      "owner": "supabase_storage_admin"
-    },
-    "index:storage.objects.idx_objects_bucket_id_name_lower": {
-      "schema": "storage",
-      "table_name": "objects",
-      "name": "idx_objects_bucket_id_name_lower",
-      "storage_params": [],
-      "statistics_target": [
-        -1,
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2,
-        0
-      ],
-      "column_collations": [
-        null,
-        "pg_catalog.\"C\""
-      ],
-      "operator_classes": [
-        "default",
-        "pg_catalog.text_ops"
-      ],
-      "column_options": [
-        0,
-        0
-      ],
-      "index_expressions": "lower(name)",
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX idx_objects_bucket_id_name_lower ON storage.objects USING btree (bucket_id, lower(name) COLLATE \"C\")",
+      "definition": "CREATE UNIQUE INDEX migrations_name_key ON storage.migrations USING btree (name)",
       "comment": null,
       "owner": "supabase_storage_admin"
     },
@@ -10493,6 +10698,46 @@
       "comment": null,
       "owner": "supabase_storage_admin"
     },
+    "index:storage.objects.name_prefix_search": {
+      "schema": "storage",
+      "table_name": "objects",
+      "name": "name_prefix_search",
+      "storage_params": [],
+      "statistics_target": [
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        3
+      ],
+      "column_collations": [
+        null
+      ],
+      "operator_classes": [
+        "pg_catalog.text_pattern_ops"
+      ],
+      "column_options": [
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX name_prefix_search ON storage.objects USING btree (name text_pattern_ops)",
+      "comment": null,
+      "owner": "supabase_storage_admin"
+    },
     "index:storage.objects.idx_objects_bucket_id_name": {
       "schema": "storage",
       "table_name": "objects",
@@ -10535,6 +10780,51 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE INDEX idx_objects_bucket_id_name ON storage.objects USING btree (bucket_id, name COLLATE \"C\")",
+      "comment": null,
+      "owner": "supabase_storage_admin"
+    },
+    "index:storage.objects.idx_objects_bucket_id_name_lower": {
+      "schema": "storage",
+      "table_name": "objects",
+      "name": "idx_objects_bucket_id_name_lower",
+      "storage_params": [],
+      "statistics_target": [
+        -1,
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2,
+        0
+      ],
+      "column_collations": [
+        null,
+        "pg_catalog.\"C\""
+      ],
+      "operator_classes": [
+        "default",
+        "pg_catalog.text_ops"
+      ],
+      "column_options": [
+        0,
+        0
+      ],
+      "index_expressions": "lower(name)",
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX idx_objects_bucket_id_name_lower ON storage.objects USING btree (bucket_id, lower(name) COLLATE \"C\")",
       "comment": null,
       "owner": "supabase_storage_admin"
     },
@@ -10753,6 +11043,51 @@
       "comment": null,
       "owner": "supabase_storage_admin"
     },
+    "index:supabase_functions.hooks.supabase_functions_hooks_h_table_id_h_name_idx": {
+      "schema": "supabase_functions",
+      "table_name": "hooks",
+      "name": "supabase_functions_hooks_h_table_id_h_name_idx",
+      "storage_params": [],
+      "statistics_target": [
+        -1,
+        -1
+      ],
+      "index_type": "btree",
+      "tablespace": null,
+      "is_unique": false,
+      "is_primary": false,
+      "is_exclusion": false,
+      "nulls_not_distinct": false,
+      "immediate": true,
+      "is_clustered": false,
+      "is_replica_identity": false,
+      "key_columns": [
+        2,
+        3
+      ],
+      "column_collations": [
+        null,
+        null
+      ],
+      "operator_classes": [
+        "default",
+        "default"
+      ],
+      "column_options": [
+        0,
+        0
+      ],
+      "index_expressions": null,
+      "partial_predicate": null,
+      "table_relkind": "r",
+      "is_owned_by_constraint": false,
+      "is_partitioned_index": false,
+      "is_index_partition": false,
+      "parent_index_name": null,
+      "definition": "CREATE INDEX supabase_functions_hooks_h_table_id_h_name_idx ON supabase_functions.hooks USING btree (hook_table_id, hook_name)",
+      "comment": null,
+      "owner": "supabase_functions_admin"
+    },
     "index:supabase_functions.hooks.supabase_functions_hooks_request_id_idx": {
       "schema": "supabase_functions",
       "table_name": "hooks",
@@ -10830,51 +11165,6 @@
       "is_index_partition": false,
       "parent_index_name": null,
       "definition": "CREATE UNIQUE INDEX hooks_pkey ON supabase_functions.hooks USING btree (id)",
-      "comment": null,
-      "owner": "supabase_functions_admin"
-    },
-    "index:supabase_functions.hooks.supabase_functions_hooks_h_table_id_h_name_idx": {
-      "schema": "supabase_functions",
-      "table_name": "hooks",
-      "name": "supabase_functions_hooks_h_table_id_h_name_idx",
-      "storage_params": [],
-      "statistics_target": [
-        -1,
-        -1
-      ],
-      "index_type": "btree",
-      "tablespace": null,
-      "is_unique": false,
-      "is_primary": false,
-      "is_exclusion": false,
-      "nulls_not_distinct": false,
-      "immediate": true,
-      "is_clustered": false,
-      "is_replica_identity": false,
-      "key_columns": [
-        2,
-        3
-      ],
-      "column_collations": [
-        null,
-        null
-      ],
-      "operator_classes": [
-        "default",
-        "default"
-      ],
-      "column_options": [
-        0,
-        0
-      ],
-      "index_expressions": null,
-      "partial_predicate": null,
-      "table_relkind": "r",
-      "is_owned_by_constraint": false,
-      "is_partitioned_index": false,
-      "is_index_partition": false,
-      "parent_index_name": null,
-      "definition": "CREATE INDEX supabase_functions_hooks_h_table_id_h_name_idx ON supabase_functions.hooks USING btree (hook_table_id, hook_name)",
       "comment": null,
       "owner": "supabase_functions_admin"
     },
@@ -11040,9 +11330,96 @@
       ],
       "schemas": [],
       "security_labels": []
+    },
+    "publication:supabase_realtime_messages_publication": {
+      "name": "supabase_realtime_messages_publication",
+      "owner": "supabase_admin",
+      "comment": null,
+      "all_tables": false,
+      "publish_insert": true,
+      "publish_update": true,
+      "publish_delete": true,
+      "publish_truncate": true,
+      "publish_via_partition_root": false,
+      "tables": [
+        {
+          "schema": "realtime",
+          "name": "messages",
+          "columns": null,
+          "row_filter": null
+        }
+      ],
+      "schemas": [],
+      "security_labels": []
     }
   },
   "rlsPolicies": {
+    "rlsPolicy:public.configuracion.\"Admin can delete configuracion\"": {
+      "schema": "public",
+      "name": "\"Admin can delete configuracion\"",
+      "table_name": "configuracion",
+      "command": "d",
+      "permissive": true,
+      "roles": [
+        "authenticated"
+      ],
+      "using_expression": "public.is_admin()",
+      "with_check_expression": null,
+      "owner": "postgres",
+      "comment": null,
+      "referenced_relations": [],
+      "referenced_procedures": [
+        {
+          "schema": "public",
+          "name": "is_admin",
+          "argument_types": []
+        }
+      ]
+    },
+    "rlsPolicy:public.configuracion.\"Admin can insert configuracion\"": {
+      "schema": "public",
+      "name": "\"Admin can insert configuracion\"",
+      "table_name": "configuracion",
+      "command": "a",
+      "permissive": true,
+      "roles": [
+        "authenticated"
+      ],
+      "using_expression": null,
+      "with_check_expression": "public.is_admin()",
+      "owner": "postgres",
+      "comment": null,
+      "referenced_relations": [],
+      "referenced_procedures": [
+        {
+          "schema": "public",
+          "name": "is_admin",
+          "argument_types": []
+        }
+      ]
+    },
+    "rlsPolicy:public.configuracion.\"Admin can update configuracion\"": {
+      "schema": "public",
+      "name": "\"Admin can update configuracion\"",
+      "table_name": "configuracion",
+      "command": "w",
+      "permissive": true,
+      "roles": [
+        "authenticated"
+      ],
+      "using_expression": "public.is_admin()",
+      "with_check_expression": "public.is_admin()",
+      "owner": "postgres",
+      "comment": null,
+      "referenced_relations": [],
+      "referenced_procedures": [
+        {
+          "schema": "public",
+          "name": "is_admin",
+          "argument_types": []
+        }
+      ]
+    },
     "rlsPolicy:public.usuario_roles.\"Administradores pueden todo en usuario_roles\"": {
       "schema": "public",
       "name": "\"Administradores pueden todo en usuario_roles\"",
@@ -11064,6 +11441,22 @@
           "argument_types": []
         }
       ]
+    },
+    "rlsPolicy:public.configuracion.\"Authenticated can read configuracion\"": {
+      "schema": "public",
+      "name": "\"Authenticated can read configuracion\"",
+      "table_name": "configuracion",
+      "command": "r",
+      "permissive": true,
+      "roles": [
+        "authenticated"
+      ],
+      "using_expression": "true",
+      "with_check_expression": null,
+      "owner": "postgres",
+      "comment": null,
+      "referenced_relations": [],
+      "referenced_procedures": []
     },
     "rlsPolicy:public.preguntas.\"Permitir lectura  a todos los autenticados en preguntas\"": {
       "schema": "public",
@@ -31098,6 +31491,327 @@
       ],
       "security_labels": []
     },
+    "table:public.configuracion": {
+      "schema": "public",
+      "name": "configuracion",
+      "persistence": "p",
+      "row_security": true,
+      "force_row_security": false,
+      "has_indexes": true,
+      "has_rules": false,
+      "has_triggers": false,
+      "has_subclasses": false,
+      "is_populated": true,
+      "replica_identity": "d",
+      "replica_identity_index": null,
+      "is_partition": false,
+      "options": null,
+      "partition_bound": null,
+      "partition_by": null,
+      "owner": "postgres",
+      "comment": null,
+      "parent_schema": null,
+      "parent_name": null,
+      "columns": [
+        {
+          "name": "id",
+          "position": 1,
+          "data_type": "uuid",
+          "data_type_str": "uuid",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": true,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": "gen_random_uuid()",
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "clave",
+          "position": 2,
+          "data_type": "text",
+          "data_type_str": "text",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": true,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": null,
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "valor",
+          "position": 3,
+          "data_type": "text",
+          "data_type_str": "text",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": true,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": null,
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "descripcion",
+          "position": 4,
+          "data_type": "text",
+          "data_type_str": "text",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": false,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": null,
+          "comment": null,
+          "security_labels": []
+        }
+      ],
+      "constraints": [
+        {
+          "name": "configuracion_clave_key",
+          "constraint_type": "u",
+          "deferrable": false,
+          "initially_deferred": false,
+          "validated": true,
+          "is_local": true,
+          "no_inherit": true,
+          "is_temporal": false,
+          "is_partition_clone": false,
+          "parent_constraint_schema": null,
+          "parent_constraint_name": null,
+          "parent_table_schema": null,
+          "parent_table_name": null,
+          "key_columns": [
+            "clave"
+          ],
+          "foreign_key_columns": null,
+          "foreign_key_table": null,
+          "foreign_key_schema": null,
+          "foreign_key_table_is_partition": null,
+          "foreign_key_parent_schema": null,
+          "foreign_key_parent_table": null,
+          "foreign_key_effective_schema": null,
+          "foreign_key_effective_table": null,
+          "on_update": null,
+          "on_delete": null,
+          "match_type": null,
+          "check_expression": null,
+          "owner": "postgres",
+          "definition": "UNIQUE (clave)",
+          "comment": null
+        },
+        {
+          "name": "configuracion_pkey",
+          "constraint_type": "p",
+          "deferrable": false,
+          "initially_deferred": false,
+          "validated": true,
+          "is_local": true,
+          "no_inherit": true,
+          "is_temporal": false,
+          "is_partition_clone": false,
+          "parent_constraint_schema": null,
+          "parent_constraint_name": null,
+          "parent_table_schema": null,
+          "parent_table_name": null,
+          "key_columns": [
+            "id"
+          ],
+          "foreign_key_columns": null,
+          "foreign_key_table": null,
+          "foreign_key_schema": null,
+          "foreign_key_table_is_partition": null,
+          "foreign_key_parent_schema": null,
+          "foreign_key_parent_table": null,
+          "foreign_key_effective_schema": null,
+          "foreign_key_effective_table": null,
+          "on_update": null,
+          "on_delete": null,
+          "match_type": null,
+          "check_expression": null,
+          "owner": "postgres",
+          "definition": "PRIMARY KEY (id)",
+          "comment": null
+        }
+      ],
+      "privileges": [
+        {
+          "grantee": "postgres",
+          "privilege": "DELETE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "INSERT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "MAINTAIN",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "REFERENCES",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "SELECT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "TRIGGER",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "TRUNCATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "UPDATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "anon",
+          "privilege": "MAINTAIN",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "anon",
+          "privilege": "REFERENCES",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "anon",
+          "privilege": "TRIGGER",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "anon",
+          "privilege": "TRUNCATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "authenticated",
+          "privilege": "MAINTAIN",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "authenticated",
+          "privilege": "REFERENCES",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "authenticated",
+          "privilege": "SELECT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "authenticated",
+          "privilege": "TRIGGER",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "authenticated",
+          "privilege": "TRUNCATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "service_role",
+          "privilege": "DELETE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "service_role",
+          "privilege": "INSERT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "service_role",
+          "privilege": "MAINTAIN",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "service_role",
+          "privilege": "REFERENCES",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "service_role",
+          "privilege": "SELECT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "service_role",
+          "privilege": "TRIGGER",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "service_role",
+          "privilege": "TRUNCATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "service_role",
+          "privilege": "UPDATE",
+          "grantable": false,
+          "columns": null
+        }
+      ],
+      "security_labels": []
+    },
     "table:public.correlativas": {
       "schema": "public",
       "name": "correlativas",
@@ -37942,6 +38656,25 @@
           "default": "now()",
           "comment": null,
           "security_labels": []
+        },
+        {
+          "name": "fecha_entrada_rojo",
+          "position": 9,
+          "data_type": "timestamp with time zone",
+          "data_type_str": "timestamp with time zone",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": false,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": null,
+          "comment": null,
+          "security_labels": []
         }
       ],
       "constraints": [
@@ -42580,6 +43313,418 @@
       "constraints": [
         {
           "name": "messages_2026_06_30_pkey",
+          "constraint_type": "p",
+          "deferrable": false,
+          "initially_deferred": false,
+          "validated": true,
+          "is_local": false,
+          "no_inherit": false,
+          "is_temporal": false,
+          "is_partition_clone": true,
+          "parent_constraint_schema": "realtime",
+          "parent_constraint_name": "messages_pkey",
+          "parent_table_schema": "realtime",
+          "parent_table_name": "messages",
+          "key_columns": [
+            "id",
+            "inserted_at"
+          ],
+          "foreign_key_columns": null,
+          "foreign_key_table": null,
+          "foreign_key_schema": null,
+          "foreign_key_table_is_partition": null,
+          "foreign_key_parent_schema": null,
+          "foreign_key_parent_table": null,
+          "foreign_key_effective_schema": null,
+          "foreign_key_effective_table": null,
+          "on_update": null,
+          "on_delete": null,
+          "match_type": null,
+          "check_expression": null,
+          "owner": "supabase_realtime_admin",
+          "definition": "PRIMARY KEY (id, inserted_at)",
+          "comment": null
+        },
+        {
+          "name": "messages_payload_exclusive",
+          "constraint_type": "c",
+          "deferrable": false,
+          "initially_deferred": false,
+          "validated": true,
+          "is_local": false,
+          "no_inherit": false,
+          "is_temporal": false,
+          "is_partition_clone": true,
+          "parent_constraint_schema": null,
+          "parent_constraint_name": null,
+          "parent_table_schema": null,
+          "parent_table_name": null,
+          "key_columns": [
+            "payload",
+            "binary_payload"
+          ],
+          "foreign_key_columns": null,
+          "foreign_key_table": null,
+          "foreign_key_schema": null,
+          "foreign_key_table_is_partition": null,
+          "foreign_key_parent_schema": null,
+          "foreign_key_parent_table": null,
+          "foreign_key_effective_schema": null,
+          "foreign_key_effective_table": null,
+          "on_update": null,
+          "on_delete": null,
+          "match_type": null,
+          "check_expression": "((payload IS NULL) OR (binary_payload IS NULL))",
+          "owner": "supabase_realtime_admin",
+          "definition": "CHECK (payload IS NULL OR binary_payload IS NULL)",
+          "comment": null
+        }
+      ],
+      "privileges": [
+        {
+          "grantee": "postgres",
+          "privilege": "DELETE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "INSERT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "MAINTAIN",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "REFERENCES",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "SELECT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "TRIGGER",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "TRUNCATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "postgres",
+          "privilege": "UPDATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "dashboard_user",
+          "privilege": "DELETE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "dashboard_user",
+          "privilege": "INSERT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "dashboard_user",
+          "privilege": "MAINTAIN",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "dashboard_user",
+          "privilege": "REFERENCES",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "dashboard_user",
+          "privilege": "SELECT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "dashboard_user",
+          "privilege": "TRIGGER",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "dashboard_user",
+          "privilege": "TRUNCATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "dashboard_user",
+          "privilege": "UPDATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "supabase_realtime_admin",
+          "privilege": "DELETE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "supabase_realtime_admin",
+          "privilege": "INSERT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "supabase_realtime_admin",
+          "privilege": "MAINTAIN",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "supabase_realtime_admin",
+          "privilege": "REFERENCES",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "supabase_realtime_admin",
+          "privilege": "SELECT",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "supabase_realtime_admin",
+          "privilege": "TRIGGER",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "supabase_realtime_admin",
+          "privilege": "TRUNCATE",
+          "grantable": false,
+          "columns": null
+        },
+        {
+          "grantee": "supabase_realtime_admin",
+          "privilege": "UPDATE",
+          "grantable": false,
+          "columns": null
+        }
+      ],
+      "security_labels": []
+    },
+    "table:realtime.messages_2026_07_01": {
+      "schema": "realtime",
+      "name": "messages_2026_07_01",
+      "persistence": "p",
+      "row_security": false,
+      "force_row_security": false,
+      "has_indexes": true,
+      "has_rules": false,
+      "has_triggers": false,
+      "has_subclasses": false,
+      "is_populated": true,
+      "replica_identity": "d",
+      "replica_identity_index": null,
+      "is_partition": true,
+      "options": null,
+      "partition_bound": "FOR VALUES FROM ('2026-07-01 00:00:00') TO ('2026-07-02 00:00:00')",
+      "partition_by": null,
+      "owner": "supabase_realtime_admin",
+      "comment": null,
+      "parent_schema": "realtime",
+      "parent_name": "messages",
+      "columns": [
+        {
+          "name": "topic",
+          "position": 1,
+          "data_type": "text",
+          "data_type_str": "text",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": true,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": null,
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "extension",
+          "position": 2,
+          "data_type": "text",
+          "data_type_str": "text",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": true,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": null,
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "payload",
+          "position": 3,
+          "data_type": "jsonb",
+          "data_type_str": "jsonb",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": false,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": null,
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "event",
+          "position": 4,
+          "data_type": "text",
+          "data_type_str": "text",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": false,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": null,
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "private",
+          "position": 5,
+          "data_type": "boolean",
+          "data_type_str": "boolean",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": false,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": "false",
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "updated_at",
+          "position": 6,
+          "data_type": "timestamp without time zone",
+          "data_type_str": "timestamp without time zone",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": true,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": "now()",
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "inserted_at",
+          "position": 7,
+          "data_type": "timestamp without time zone",
+          "data_type_str": "timestamp without time zone",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": true,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": "now()",
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "id",
+          "position": 8,
+          "data_type": "uuid",
+          "data_type_str": "uuid",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": true,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": "gen_random_uuid()",
+          "comment": null,
+          "security_labels": []
+        },
+        {
+          "name": "binary_payload",
+          "position": 9,
+          "data_type": "bytea",
+          "data_type_str": "bytea",
+          "is_custom_type": false,
+          "custom_type_type": null,
+          "custom_type_category": null,
+          "custom_type_schema": null,
+          "custom_type_name": null,
+          "not_null": false,
+          "is_identity": false,
+          "is_identity_always": false,
+          "is_generated": false,
+          "collation": null,
+          "default": null,
+          "comment": null,
+          "security_labels": []
+        }
+      ],
+      "constraints": [
+        {
+          "name": "messages_2026_07_01_pkey",
           "constraint_type": "p",
           "deferrable": false,
           "initially_deferred": false,
@@ -51587,6 +52732,46 @@
       "deptype": "n"
     },
     {
+      "dependent_stable_id": "acl:table:public.configuracion::grantee:anon",
+      "referenced_stable_id": "role:anon",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:public.configuracion::grantee:anon",
+      "referenced_stable_id": "table:public.configuracion",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:public.configuracion::grantee:authenticated",
+      "referenced_stable_id": "role:authenticated",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:public.configuracion::grantee:authenticated",
+      "referenced_stable_id": "table:public.configuracion",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:public.configuracion::grantee:postgres",
+      "referenced_stable_id": "role:postgres",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:public.configuracion::grantee:postgres",
+      "referenced_stable_id": "table:public.configuracion",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:public.configuracion::grantee:service_role",
+      "referenced_stable_id": "role:service_role",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:public.configuracion::grantee:service_role",
+      "referenced_stable_id": "table:public.configuracion",
+      "deptype": "n"
+    },
+    {
       "dependent_stable_id": "acl:table:public.correlativas::grantee:anon",
       "referenced_stable_id": "role:anon",
       "deptype": "n"
@@ -52574,6 +53759,36 @@
     {
       "dependent_stable_id": "acl:table:realtime.messages_2026_06_30::grantee:supabase_realtime_admin",
       "referenced_stable_id": "table:realtime.messages_2026_06_30",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:realtime.messages_2026_07_01::grantee:dashboard_user",
+      "referenced_stable_id": "role:dashboard_user",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:realtime.messages_2026_07_01::grantee:dashboard_user",
+      "referenced_stable_id": "table:realtime.messages_2026_07_01",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:realtime.messages_2026_07_01::grantee:postgres",
+      "referenced_stable_id": "role:postgres",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:realtime.messages_2026_07_01::grantee:postgres",
+      "referenced_stable_id": "table:realtime.messages_2026_07_01",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:realtime.messages_2026_07_01::grantee:supabase_realtime_admin",
+      "referenced_stable_id": "role:supabase_realtime_admin",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "acl:table:realtime.messages_2026_07_01::grantee:supabase_realtime_admin",
+      "referenced_stable_id": "table:realtime.messages_2026_07_01",
       "deptype": "n"
     },
     {
@@ -53889,17 +55104,12 @@
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_name_length",
       "referenced_stable_id": "column:auth.custom_oauth_providers.name",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_name_length",
       "referenced_stable_id": "column:auth.custom_oauth_providers.name",
-      "deptype": "n"
-    },
-    {
-      "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oauth2_requires_endpoints",
-      "referenced_stable_id": "column:auth.custom_oauth_providers.authorization_url",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oauth2_requires_endpoints",
@@ -53908,13 +55118,18 @@
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oauth2_requires_endpoints",
-      "referenced_stable_id": "column:auth.custom_oauth_providers.provider_type",
+      "referenced_stable_id": "column:auth.custom_oauth_providers.authorization_url",
       "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oauth2_requires_endpoints",
       "referenced_stable_id": "column:auth.custom_oauth_providers.provider_type",
       "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oauth2_requires_endpoints",
+      "referenced_stable_id": "column:auth.custom_oauth_providers.provider_type",
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oauth2_requires_endpoints",
@@ -53929,12 +55144,12 @@
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oauth2_requires_endpoints",
       "referenced_stable_id": "column:auth.custom_oauth_providers.userinfo_url",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oauth2_requires_endpoints",
       "referenced_stable_id": "column:auth.custom_oauth_providers.userinfo_url",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oidc_discovery_url_https",
@@ -53969,22 +55184,22 @@
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oidc_issuer_https",
       "referenced_stable_id": "column:auth.custom_oauth_providers.provider_type",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oidc_issuer_https",
       "referenced_stable_id": "column:auth.custom_oauth_providers.provider_type",
-      "deptype": "n"
-    },
-    {
-      "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oidc_requires_issuer",
-      "referenced_stable_id": "column:auth.custom_oauth_providers.issuer",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oidc_requires_issuer",
       "referenced_stable_id": "column:auth.custom_oauth_providers.issuer",
       "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oidc_requires_issuer",
+      "referenced_stable_id": "column:auth.custom_oauth_providers.issuer",
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_oidc_requires_issuer",
@@ -54014,12 +55229,12 @@
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_token_url_https",
       "referenced_stable_id": "column:auth.custom_oauth_providers.token_url",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_token_url_https",
       "referenced_stable_id": "column:auth.custom_oauth_providers.token_url",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_token_url_length",
@@ -54034,22 +55249,22 @@
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_userinfo_url_https",
       "referenced_stable_id": "column:auth.custom_oauth_providers.userinfo_url",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_userinfo_url_https",
       "referenced_stable_id": "column:auth.custom_oauth_providers.userinfo_url",
-      "deptype": "a"
-    },
-    {
-      "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_userinfo_url_length",
-      "referenced_stable_id": "column:auth.custom_oauth_providers.userinfo_url",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_userinfo_url_length",
       "referenced_stable_id": "column:auth.custom_oauth_providers.userinfo_url",
       "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "constraint:auth.custom_oauth_providers.custom_oauth_providers_userinfo_url_length",
+      "referenced_stable_id": "column:auth.custom_oauth_providers.userinfo_url",
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.flow_state.flow_state_pkey",
@@ -54229,12 +55444,12 @@
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_code_challenge_length",
       "referenced_stable_id": "column:auth.oauth_authorizations.code_challenge",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_code_challenge_length",
       "referenced_stable_id": "column:auth.oauth_authorizations.code_challenge",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_expires_at_future",
@@ -54274,12 +55489,12 @@
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_redirect_uri_length",
       "referenced_stable_id": "column:auth.oauth_authorizations.redirect_uri",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_redirect_uri_length",
       "referenced_stable_id": "column:auth.oauth_authorizations.redirect_uri",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_resource_length",
@@ -54294,22 +55509,22 @@
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_scope_length",
       "referenced_stable_id": "column:auth.oauth_authorizations.scope",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_scope_length",
       "referenced_stable_id": "column:auth.oauth_authorizations.scope",
-      "deptype": "n"
-    },
-    {
-      "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_state_length",
-      "referenced_stable_id": "column:auth.oauth_authorizations.state",
       "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_state_length",
       "referenced_stable_id": "column:auth.oauth_authorizations.state",
       "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_state_length",
+      "referenced_stable_id": "column:auth.oauth_authorizations.state",
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_authorizations.oauth_authorizations_user_id_fkey",
@@ -54339,22 +55554,22 @@
     {
       "dependent_stable_id": "constraint:auth.oauth_clients.oauth_clients_client_name_length",
       "referenced_stable_id": "column:auth.oauth_clients.client_name",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_clients.oauth_clients_client_name_length",
       "referenced_stable_id": "column:auth.oauth_clients.client_name",
-      "deptype": "a"
-    },
-    {
-      "dependent_stable_id": "constraint:auth.oauth_clients.oauth_clients_client_uri_length",
-      "referenced_stable_id": "column:auth.oauth_clients.client_uri",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_clients.oauth_clients_client_uri_length",
       "referenced_stable_id": "column:auth.oauth_clients.client_uri",
       "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "constraint:auth.oauth_clients.oauth_clients_client_uri_length",
+      "referenced_stable_id": "column:auth.oauth_clients.client_uri",
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_clients.oauth_clients_logo_uri_length",
@@ -54374,12 +55589,12 @@
     {
       "dependent_stable_id": "constraint:auth.oauth_clients.oauth_clients_token_endpoint_auth_method_check",
       "referenced_stable_id": "column:auth.oauth_clients.token_endpoint_auth_method",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_clients.oauth_clients_token_endpoint_auth_method_check",
       "referenced_stable_id": "column:auth.oauth_clients.token_endpoint_auth_method",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_client_id_fkey",
@@ -54409,12 +55624,12 @@
     {
       "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_revoked_after_granted",
       "referenced_stable_id": "column:auth.oauth_consents.granted_at",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_revoked_after_granted",
       "referenced_stable_id": "column:auth.oauth_consents.granted_at",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_revoked_after_granted",
@@ -54429,22 +55644,22 @@
     {
       "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_scopes_length",
       "referenced_stable_id": "column:auth.oauth_consents.scopes",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_scopes_length",
       "referenced_stable_id": "column:auth.oauth_consents.scopes",
-      "deptype": "n"
-    },
-    {
-      "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_scopes_not_empty",
-      "referenced_stable_id": "column:auth.oauth_consents.scopes",
       "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_scopes_not_empty",
       "referenced_stable_id": "column:auth.oauth_consents.scopes",
       "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_scopes_not_empty",
+      "referenced_stable_id": "column:auth.oauth_consents.scopes",
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.oauth_consents.oauth_consents_user_client_unique",
@@ -54484,12 +55699,12 @@
     {
       "dependent_stable_id": "constraint:auth.one_time_tokens.one_time_tokens_token_hash_check",
       "referenced_stable_id": "column:auth.one_time_tokens.token_hash",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.one_time_tokens.one_time_tokens_token_hash_check",
       "referenced_stable_id": "column:auth.one_time_tokens.token_hash",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.one_time_tokens.one_time_tokens_user_id_fkey",
@@ -54554,12 +55769,12 @@
     {
       "dependent_stable_id": "constraint:auth.saml_providers.\"metadata_url not empty\"",
       "referenced_stable_id": "column:auth.saml_providers.metadata_url",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:auth.saml_providers.\"metadata_url not empty\"",
       "referenced_stable_id": "column:auth.saml_providers.metadata_url",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:auth.saml_providers.\"metadata_xml not empty\"",
@@ -54884,12 +56099,12 @@
     {
       "dependent_stable_id": "constraint:public.alertas.alertas_origen_check",
       "referenced_stable_id": "column:public.alertas.origen",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:public.alertas.alertas_origen_check",
       "referenced_stable_id": "column:public.alertas.origen",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.alertas.alertas_pkey",
@@ -54919,12 +56134,12 @@
     {
       "dependent_stable_id": "constraint:public.alertas.alertas_tipo_check",
       "referenced_stable_id": "column:public.alertas.tipo",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.alertas.alertas_tipo_check",
       "referenced_stable_id": "column:public.alertas.tipo",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:public.alertas.alertas_tutor_id_fkey",
@@ -55012,6 +56227,16 @@
       "deptype": "a"
     },
     {
+      "dependent_stable_id": "constraint:public.configuracion.configuracion_clave_key",
+      "referenced_stable_id": "column:public.configuracion.clave",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "constraint:public.configuracion.configuracion_pkey",
+      "referenced_stable_id": "column:public.configuracion.id",
+      "deptype": "a"
+    },
+    {
       "dependent_stable_id": "constraint:public.correlativas.correlativas_materia_id_fkey",
       "referenced_stable_id": "column:public.correlativas.materia_id",
       "deptype": "a"
@@ -55069,12 +56294,12 @@
     {
       "dependent_stable_id": "constraint:public.correlativas.correlativas_tipo_check",
       "referenced_stable_id": "column:public.correlativas.tipo",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.correlativas.correlativas_tipo_check",
       "referenced_stable_id": "column:public.correlativas.tipo",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:public.cursadas.cursadas_estudiante_id_fkey",
@@ -55164,22 +56389,22 @@
     {
       "dependent_stable_id": "constraint:public.encuestas.encuestas_tipo_check",
       "referenced_stable_id": "column:public.encuestas.tipo",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:public.encuestas.encuestas_tipo_check",
       "referenced_stable_id": "column:public.encuestas.tipo",
-      "deptype": "a"
-    },
-    {
-      "dependent_stable_id": "constraint:public.entrevistas.entrevistas_estado_alumno_percibido_check",
-      "referenced_stable_id": "column:public.entrevistas.estado_alumno_percibido",
       "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.entrevistas.entrevistas_estado_alumno_percibido_check",
       "referenced_stable_id": "column:public.entrevistas.estado_alumno_percibido",
       "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "constraint:public.entrevistas.entrevistas_estado_alumno_percibido_check",
+      "referenced_stable_id": "column:public.entrevistas.estado_alumno_percibido",
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.entrevistas.entrevistas_intervencion_id_fkey",
@@ -55394,12 +56619,12 @@
     {
       "dependent_stable_id": "constraint:public.intervenciones.intervenciones_modalidad_check",
       "referenced_stable_id": "column:public.intervenciones.modalidad",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.intervenciones.intervenciones_modalidad_check",
       "referenced_stable_id": "column:public.intervenciones.modalidad",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:public.intervenciones.intervenciones_pkey",
@@ -55409,12 +56634,12 @@
     {
       "dependent_stable_id": "constraint:public.intervenciones.intervenciones_tipo_check",
       "referenced_stable_id": "column:public.intervenciones.tipo",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:public.intervenciones.intervenciones_tipo_check",
       "referenced_stable_id": "column:public.intervenciones.tipo",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.intervenciones.intervenciones_tutor_id_fkey",
@@ -55729,12 +56954,12 @@
     {
       "dependent_stable_id": "constraint:public.scores.scores_nivel_riesgo_check",
       "referenced_stable_id": "column:public.scores.nivel_riesgo",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.scores.scores_nivel_riesgo_check",
       "referenced_stable_id": "column:public.scores.nivel_riesgo",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:public.scores.scores_pkey",
@@ -55824,12 +57049,12 @@
     {
       "dependent_stable_id": "constraint:public.sesiones_encuesta.sesiones_encuesta_estado_check",
       "referenced_stable_id": "column:public.sesiones_encuesta.estado",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:public.sesiones_encuesta.sesiones_encuesta_estado_check",
       "referenced_stable_id": "column:public.sesiones_encuesta.estado",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.sesiones_encuesta.sesiones_encuesta_estudiante_id_fkey",
@@ -55884,12 +57109,12 @@
     {
       "dependent_stable_id": "constraint:public.usuario_roles.usuario_roles_rol_check",
       "referenced_stable_id": "column:public.usuario_roles.rol",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:public.usuario_roles.usuario_roles_rol_check",
       "referenced_stable_id": "column:public.usuario_roles.rol",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:public.usuario_roles.usuario_roles_usuario_id_fkey",
@@ -55969,12 +57194,12 @@
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_26.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_26.binary_payload",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_26.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_26.binary_payload",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_26.messages_payload_exclusive",
@@ -55999,12 +57224,12 @@
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_27.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_27.binary_payload",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_27.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_27.binary_payload",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_27.messages_payload_exclusive",
@@ -56029,12 +57254,12 @@
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_28.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_28.binary_payload",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_28.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_28.binary_payload",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_28.messages_payload_exclusive",
@@ -56059,22 +57284,22 @@
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_29.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_29.binary_payload",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_29.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_29.binary_payload",
-      "deptype": "n"
-    },
-    {
-      "dependent_stable_id": "constraint:realtime.messages_2026_06_29.messages_payload_exclusive",
-      "referenced_stable_id": "column:realtime.messages_2026_06_29.payload",
       "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_29.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_29.payload",
       "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "constraint:realtime.messages_2026_06_29.messages_payload_exclusive",
+      "referenced_stable_id": "column:realtime.messages_2026_06_29.payload",
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_30.messages_2026_06_30_pkey",
@@ -56104,6 +57329,36 @@
     {
       "dependent_stable_id": "constraint:realtime.messages_2026_06_30.messages_payload_exclusive",
       "referenced_stable_id": "column:realtime.messages_2026_06_30.payload",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "constraint:realtime.messages_2026_07_01.messages_2026_07_01_pkey",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.id",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "constraint:realtime.messages_2026_07_01.messages_2026_07_01_pkey",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.inserted_at",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "constraint:realtime.messages_2026_07_01.messages_payload_exclusive",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.binary_payload",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "constraint:realtime.messages_2026_07_01.messages_payload_exclusive",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.binary_payload",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "constraint:realtime.messages_2026_07_01.messages_payload_exclusive",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.payload",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "constraint:realtime.messages_2026_07_01.messages_payload_exclusive",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.payload",
       "deptype": "n"
     },
     {
@@ -58879,12 +60134,12 @@
     {
       "dependent_stable_id": "index:auth.sso_domains.sso_domains_domain_idx",
       "referenced_stable_id": "table:auth.sso_domains",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "index:auth.sso_domains.sso_domains_domain_idx",
       "referenced_stable_id": "table:auth.sso_domains",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "index:auth.sso_domains.sso_domains_pkey",
@@ -59237,6 +60492,21 @@
       "deptype": "n"
     },
     {
+      "dependent_stable_id": "index:public.carreras.carreras_codigo_uniq",
+      "referenced_stable_id": "column:public.carreras.codigo",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "index:public.carreras.carreras_codigo_uniq",
+      "referenced_stable_id": "schema:public",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:public.carreras.carreras_codigo_uniq",
+      "referenced_stable_id": "table:public.carreras",
+      "deptype": "n"
+    },
+    {
       "dependent_stable_id": "index:public.carreras.carreras_pkey",
       "referenced_stable_id": "schema:public",
       "deptype": "n"
@@ -59254,6 +60524,26 @@
     {
       "dependent_stable_id": "index:public.categorias_pregunta.categorias_pregunta_pkey",
       "referenced_stable_id": "table:public.categorias_pregunta",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:public.configuracion.configuracion_clave_key",
+      "referenced_stable_id": "schema:public",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:public.configuracion.configuracion_clave_key",
+      "referenced_stable_id": "table:public.configuracion",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:public.configuracion.configuracion_pkey",
+      "referenced_stable_id": "schema:public",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:public.configuracion.configuracion_pkey",
+      "referenced_stable_id": "table:public.configuracion",
       "deptype": "n"
     },
     {
@@ -59307,6 +60597,26 @@
       "deptype": "n"
     },
     {
+      "dependent_stable_id": "index:public.encuestas.encuestas_tipo_activa_uniq",
+      "referenced_stable_id": "column:public.encuestas.activa",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "index:public.encuestas.encuestas_tipo_activa_uniq",
+      "referenced_stable_id": "column:public.encuestas.tipo",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "index:public.encuestas.encuestas_tipo_activa_uniq",
+      "referenced_stable_id": "schema:public",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:public.encuestas.encuestas_tipo_activa_uniq",
+      "referenced_stable_id": "table:public.encuestas",
+      "deptype": "n"
+    },
+    {
       "dependent_stable_id": "index:public.entrevistas.entrevistas_pkey",
       "referenced_stable_id": "schema:public",
       "deptype": "n"
@@ -59354,6 +60664,21 @@
     {
       "dependent_stable_id": "index:public.indicador_componentes.indicador_componentes_pkey",
       "referenced_stable_id": "table:public.indicador_componentes",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:public.indicadores.indicadores_nombre_uniq",
+      "referenced_stable_id": "column:public.indicadores.nombre",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "index:public.indicadores.indicadores_nombre_uniq",
+      "referenced_stable_id": "schema:public",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:public.indicadores.indicadores_nombre_uniq",
+      "referenced_stable_id": "table:public.indicadores",
       "deptype": "n"
     },
     {
@@ -59744,6 +61069,46 @@
     {
       "dependent_stable_id": "index:realtime.messages_2026_06_30.messages_2026_06_30_pkey",
       "referenced_stable_id": "table:realtime.messages_2026_06_30",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:realtime.messages_2026_07_01.messages_2026_07_01_inserted_at_topic_idx",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.extension",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "index:realtime.messages_2026_07_01.messages_2026_07_01_inserted_at_topic_idx",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.inserted_at",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "index:realtime.messages_2026_07_01.messages_2026_07_01_inserted_at_topic_idx",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.private",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "index:realtime.messages_2026_07_01.messages_2026_07_01_inserted_at_topic_idx",
+      "referenced_stable_id": "column:realtime.messages_2026_07_01.topic",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "index:realtime.messages_2026_07_01.messages_2026_07_01_inserted_at_topic_idx",
+      "referenced_stable_id": "schema:realtime",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:realtime.messages_2026_07_01.messages_2026_07_01_inserted_at_topic_idx",
+      "referenced_stable_id": "table:realtime.messages_2026_07_01",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:realtime.messages_2026_07_01.messages_2026_07_01_pkey",
+      "referenced_stable_id": "schema:realtime",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "index:realtime.messages_2026_07_01.messages_2026_07_01_pkey",
+      "referenced_stable_id": "table:realtime.messages_2026_07_01",
       "deptype": "n"
     },
     {
@@ -61879,22 +63244,22 @@
     {
       "dependent_stable_id": "publication:supabase_realtime",
       "referenced_stable_id": "table:public.alertas",
-      "deptype": "n"
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "publication:supabase_realtime",
       "referenced_stable_id": "table:public.alertas",
-      "deptype": "a"
-    },
-    {
-      "dependent_stable_id": "publication:supabase_realtime",
-      "referenced_stable_id": "table:public.respuestas",
       "deptype": "n"
     },
     {
       "dependent_stable_id": "publication:supabase_realtime",
       "referenced_stable_id": "table:public.respuestas",
       "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "publication:supabase_realtime",
+      "referenced_stable_id": "table:public.respuestas",
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "publication:supabase_realtime",
@@ -61909,12 +63274,27 @@
     {
       "dependent_stable_id": "publication:supabase_realtime",
       "referenced_stable_id": "table:public.sesiones_encuesta",
-      "deptype": "a"
+      "deptype": "n"
     },
     {
       "dependent_stable_id": "publication:supabase_realtime",
       "referenced_stable_id": "table:public.sesiones_encuesta",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "publication:supabase_realtime_messages_publication",
+      "referenced_stable_id": "role:supabase_admin",
       "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "publication:supabase_realtime_messages_publication",
+      "referenced_stable_id": "table:realtime.messages",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "publication:supabase_realtime_messages_publication",
+      "referenced_stable_id": "table:realtime.messages",
+      "deptype": "a"
     },
     {
       "dependent_stable_id": "rlsPolicy:public.alertas.alertas_own_or_admin",
@@ -62024,6 +63404,61 @@
     {
       "dependent_stable_id": "rlsPolicy:public.categorias_pregunta.\"Permitir todo a administradores en categorias_pregunta\"",
       "referenced_stable_id": "table:public.categorias_pregunta",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Admin can delete configuracion\"",
+      "referenced_stable_id": "procedure:public.is_admin()",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Admin can delete configuracion\"",
+      "referenced_stable_id": "role:postgres",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Admin can delete configuracion\"",
+      "referenced_stable_id": "table:public.configuracion",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Admin can insert configuracion\"",
+      "referenced_stable_id": "procedure:public.is_admin()",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Admin can insert configuracion\"",
+      "referenced_stable_id": "role:postgres",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Admin can insert configuracion\"",
+      "referenced_stable_id": "table:public.configuracion",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Admin can update configuracion\"",
+      "referenced_stable_id": "procedure:public.is_admin()",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Admin can update configuracion\"",
+      "referenced_stable_id": "role:postgres",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Admin can update configuracion\"",
+      "referenced_stable_id": "table:public.configuracion",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Authenticated can read configuracion\"",
+      "referenced_stable_id": "role:postgres",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "rlsPolicy:public.configuracion.\"Authenticated can read configuracion\"",
+      "referenced_stable_id": "table:public.configuracion",
       "deptype": "a"
     },
     {
@@ -63067,6 +64502,16 @@
       "deptype": "n"
     },
     {
+      "dependent_stable_id": "table:public.configuracion",
+      "referenced_stable_id": "role:postgres",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "table:public.configuracion",
+      "referenced_stable_id": "schema:public",
+      "deptype": "n"
+    },
+    {
       "dependent_stable_id": "table:public.correlativas",
       "referenced_stable_id": "role:postgres",
       "deptype": "n"
@@ -63358,6 +64803,21 @@
     },
     {
       "dependent_stable_id": "table:realtime.messages_2026_06_30",
+      "referenced_stable_id": "table:realtime.messages",
+      "deptype": "a"
+    },
+    {
+      "dependent_stable_id": "table:realtime.messages_2026_07_01",
+      "referenced_stable_id": "role:supabase_realtime_admin",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "table:realtime.messages_2026_07_01",
+      "referenced_stable_id": "schema:realtime",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "table:realtime.messages_2026_07_01",
       "referenced_stable_id": "table:realtime.messages",
       "deptype": "a"
     },
@@ -63997,6 +65457,11 @@
       "deptype": "n"
     },
     {
+      "dependent_stable_id": "type:public._configuracion",
+      "referenced_stable_id": "role:postgres",
+      "deptype": "n"
+    },
+    {
       "dependent_stable_id": "type:public._correlativas",
       "referenced_stable_id": "role:postgres",
       "deptype": "n"
@@ -64138,6 +65603,11 @@
     },
     {
       "dependent_stable_id": "type:realtime._messages_2026_06_30",
+      "referenced_stable_id": "role:supabase_realtime_admin",
+      "deptype": "n"
+    },
+    {
+      "dependent_stable_id": "type:realtime._messages_2026_07_01",
       "referenced_stable_id": "role:supabase_realtime_admin",
       "deptype": "n"
     },

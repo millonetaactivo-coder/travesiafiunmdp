@@ -1,0 +1,25 @@
+# Apply Progress: dashboard-admin-clarity
+
+**Date**: 2026-06-28
+**Status**: complete
+
+## Completed Tasks
+- [x] 1.1 Split useEffect into two: global (mount-only) and per-career (carreraId-dependent)
+- [x] 1.2 Add global student count query (supabase estudiantes count)
+- [x] 1.3 Fix materias criticas to filter by carrera via estudiantes join
+- [x] 2.1 Create "Vista Global" section with header, KPI cards, tutor widget
+- [x] 2.2 Create "Por Carrera" section with header showing career name
+- [x] 2.3 Add visual separator between sections (gradient divider)
+- [x] 2.4 Add empty state for "Por Carrera" when no career selected
+- [x] 3.1 Add per-section loading states (adminLoading + careerLoading)
+- [x] 3.2 Verify tsc --noEmit passes
+
+## Files Changed
+| File | Action | What Was Done |
+|------|--------|---------------|
+| `src/components/dashboards/DashAdmin.tsx` | Modified | Complete restructure: two sections, split data fetching, visual separation |
+
+## Notes
+- Original query for materias criticas had no carrera filter — now properly joined via estudiantes.carrera_id
+- Global data fetched once on mount, career data re-fetches on carreraId change
+- Added new lucide icons: Globe, BookOpen for section headers

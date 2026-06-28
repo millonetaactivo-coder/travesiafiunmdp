@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Settings, Save, AlertCircle, Loader2 } from 'lucide-react';
+import { Settings, Save, AlertCircle, Loader2, Calendar, Plus, Trash2 } from 'lucide-react';
 import { Button } from '../ui/moving-border';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
@@ -15,12 +15,14 @@ interface Indicador {
 
 export const Configuracion = () => {
   const [indicadores, setIndicadores] = useState<Indicador[]>([]);
+  const [fechasEncuesta, setFechasEncuesta] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   useEffect(() => {
     fetchIndicadores();
+    fetchFechasEncuesta();
   }, []);
 
   const fetchIndicadores = async () => {
@@ -41,6 +43,38 @@ export const Configuracion = () => {
     }
   };
 
+  const fetchFechasEncuesta = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('configuracion')
+        .select('valor')
+        .eq('clave', 'fechas_encuesta_cuatrimestral')
+        .maybeSingle();
+
+      if (error) throw error;
+      if (data?.valor) {
+        const parsed = JSON.parse(data.valor);
+        if (Array.isArray(parsed)) {
+          setFechasEncuesta(parsed);
+        }
+      }
+    } catch (error: any) {
+      console.error('Error fetching fechas_encuesta_cuatrimestral:', error);
+    }
+  };
+
+  const handleAddFecha = () => {
+    setFechasEncuesta(prev => [...prev, '']);
+  };
+
+  const handleRemoveFecha = (index: number) => {
+    setFechasEncuesta(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleFechaChange = (index: number, value: string) => {
+    setFechasEncuesta(prev => prev.map((f, i) => i === index ? value : f));
+  };
+
   const handlePesoChange = (id: string, value: string) => {
     const defaultPeso = 0;
     let numValue = parseInt(value, 10);
@@ -59,6 +93,15 @@ export const Configuracion = () => {
       return;
     }
 
+    // Validar fechas: no vacías, formato válido
+    const validFechas = fechasEncuesta.filter(f => f.trim() !== '');
+    for (const f of validFechas) {
+      if (isNaN(Date.parse(f))) {
+        toast.error(`Fecha inválida: ${f}`);
+        return;
+      }
+    }
+
     setSaving(true);
     setMessage(null);
     try {
@@ -69,9 +112,20 @@ export const Configuracion = () => {
           .eq('id', ind.id);
         if (error) throw error;
       }
+
+      // Save fechas_encuesta to configuracion table
+      const { error: configError } = await supabase
+        .from('configuracion')
+        .upsert(
+          { clave: 'fechas_encuesta_cuatrimestral', valor: JSON.stringify(validFechas) },
+          { onConflict: 'clave' }
+        );
+      if (configError) throw configError;
+
+      setFechasEncuesta(validFechas);
       toast.success('Configuración guardada correctamente.');
     } catch (error: any) {
-      console.error('Error saving indicadores:', error);
+      console.error('Error saving configuracion:', error);
       toast.error('Error al guardar la configuración.');
     } finally {
       setSaving(false);
@@ -175,6 +229,59 @@ export const Configuracion = () => {
              </div>
          </div>
       )}
+
+      {/* Fechas de Encuesta Section */}
+      <div className="bg-white/[0.04] border border-white/[0.07] rounded-2xl p-6 backdrop-blur-md">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 flex items-center justify-center bg-purple-500/10 border border-purple-500/20 rounded-xl">
+              <Calendar className="w-5 h-5 text-purple-400" />
+            </div>
+            <div>
+              <h3 className="text-slate-200 font-display font-medium">Fechas de Encuesta</h3>
+              <p className="text-xs text-slate-500 font-sans">Fechas fijas para la aplicación de encuestas de seguimiento.</p>
+            </div>
+          </div>
+          <button
+            onClick={handleAddFecha}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-purple-400 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 rounded-lg transition-colors"
+          >
+            <Plus className="w-3.5 h-3.5" /> Agregar
+          </button>
+        </div>
+
+        {fechasEncuesta.length === 0 ? (
+          <div className="text-center py-8 text-slate-600 border border-dashed border-white/[0.08] rounded-xl">
+            <Calendar className="w-6 h-6 mx-auto mb-2 opacity-40" />
+            <span className="text-xs font-sans">No hay fechas configuradas. Agregá una fecha para comenzar.</span>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {fechasEncuesta.map((fecha, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.05 }}
+                className="flex items-center gap-3"
+              >
+                <input
+                  type="date"
+                  value={fecha}
+                  onChange={(e) => handleFechaChange(i, e.target.value)}
+                  className="flex-1 bg-white/[0.03] border border-white/[0.1] rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-purple-500/50 text-sm font-mono"
+                />
+                <button
+                  onClick={() => handleRemoveFecha(i)}
+                  className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -74,16 +74,31 @@ export const guardarRespuesta = async (
   valor: string,
   materiaId?: string | null
 ) => {
+  // Manual upsert: postgREST onConflict doesn't handle NULL columns
+  // in unique constraints correctly. Check first, then insert or update.
+  const { data: existing } = await supabase
+    .from('respuestas')
+    .select('id')
+    .eq('sesion_id', sesionId)
+    .eq('pregunta_id', preguntaId)
+    .is('materia_id', materiaId ?? null)
+    .maybeSingle();
+
+  if (existing) {
+    return await supabase
+      .from('respuestas')
+      .update({ valor, es_confiable: false })
+      .eq('id', existing.id);
+  }
+
   return await supabase
     .from('respuestas')
-    .upsert({
+    .insert({
       sesion_id: sesionId,
       pregunta_id: preguntaId,
       materia_id: materiaId ?? null,
       valor,
       es_confiable: false
-    }, {
-      onConflict: 'sesion_id,pregunta_id,materia_id'
     });
 };
 
@@ -160,7 +175,11 @@ export const completarEncuesta = async (
       .eq('usuario_id', estudianteId);
   }
 
-  return await supabase.functions.invoke('calcular-score', {
+  // Trigger score recalculation (non-blocking — edge function may be
+  // unavailable in local dev, which is fine)
+  supabase.functions.invoke('calcular-score', {
     body: { estudiante_id: estudianteId }
-  });
+  }).catch(() => {});
+
+  return;
 };

@@ -297,19 +297,60 @@ serve(async (req) => {
   const scoreTotalCalculado = compAcademico + compEncuesta + compRalentizacion + compAislamiento;
   const scoreTotal = Math.round(Math.min(100, Math.max(0, scoreTotalCalculado)));
 
-  // Escala fija en el negocio 
+  // Leer umbrales desde la tabla de configuración (fallback a valores hardcodeados)
+  const FALLBACK_VERDE = 30;
+  const FALLBACK_AMARILLO = 55;
+  const FALLBACK_NARANJA = 80;
+
+  let umbralVerde = FALLBACK_VERDE;
+  let umbralAmarillo = FALLBACK_AMARILLO;
+  let umbralNaranja = FALLBACK_NARANJA;
+
+  const { data: configData } = await supabase
+    .from('configuracion')
+    .select('clave, valor')
+    .in('clave', ['umbral_verde', 'umbral_amarillo', 'umbral_naranja']);
+
+  if (configData && configData.length > 0) {
+    for (const row of configData) {
+      const num = Number(row.valor);
+      if (isNaN(num)) continue;
+      if (row.clave === 'umbral_verde') umbralVerde = num;
+      if (row.clave === 'umbral_amarillo') umbralAmarillo = num;
+      if (row.clave === 'umbral_naranja') umbralNaranja = num;
+    }
+  }
+
+  // Clasificación dinámica usando umbrales de la tabla configuracion
   const nivel =
-    scoreTotal <= 30 ? 'bajo'
-    : scoreTotal <= 55 ? 'medio'
-    : scoreTotal <= 80 ? 'alto'
+    scoreTotal <= umbralVerde ? 'bajo'
+    : scoreTotal <= umbralAmarillo ? 'medio'
+    : scoreTotal <= umbralNaranja ? 'alto'
     : 'critico'
+
+  // Determine fecha_entrada_rojo: set once when score first reaches >= 81 (alto/crítico)
+  let fechaEntradaRojo: string | null = null;
+  if (scoreTotal >= 81) {
+    const { data: existingRojo } = await supabase
+      .from('scores')
+      .select('fecha_entrada_rojo')
+      .eq('estudiante_id', estudiante_id)
+      .not('fecha_entrada_rojo', 'is', null)
+      .limit(1)
+      .maybeSingle();
+
+    if (!existingRojo?.fecha_entrada_rojo) {
+      fechaEntradaRojo = new Date().toISOString();
+    }
+  }
 
   await supabase.from('scores').insert({
     estudiante_id,
     valor: scoreTotal,
     nivel_riesgo: nivel,
     componentes: {},
-    calculado_at: new Date().toISOString()
+    calculado_at: new Date().toISOString(),
+    ...(fechaEntradaRojo ? { fecha_entrada_rojo: fechaEntradaRojo } : { fecha_entrada_rojo: null })
   })
 
   if (nivel === 'alto' || nivel === 'critico') {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { useAlertas } from '../hooks/useAlertas';
 import { signIn, signOut } from '../services/authService';
 import { FloatingDock } from './ui/floating-dock';
 import { motion } from 'framer-motion';
@@ -14,7 +15,21 @@ import { DashEncuestasAdmin } from './dashboards/DashEncuestasAdmin';
 import { ImportarAlumnos } from './dashboards/ImportarAlumnos';
 import { EncuestaInicial } from './dashboards/EncuestaInicial';
 import { Configuracion } from './dashboards/Configuracion';
-import { Settings as SettingsIcon } from 'lucide-react';
+import { AyudaPage } from './dashboards/AyudaPage';
+import { AlumnosPage } from './dashboards/AlumnosPage';
+import { PerfilEstudiantePage } from './dashboards/PerfilEstudiantePage';
+import { AlertasPage } from './dashboards/AlertasPage';
+import { IntervencionesPage } from './dashboards/IntervencionesPage';
+import { MateriasPage } from './dashboards/MateriasPage';
+import { ReportesPage } from './dashboards/ReportesPage';
+import { UsuariosPage } from './dashboards/UsuariosPage';
+import { SinContactoPage } from './dashboards/SinContactoPage';
+import { CargaNotasPage } from './dashboards/CargaNotasPage';
+import { IndicadoresPage } from './dashboards/IndicadoresPage';
+import { AsignarTutoresPage } from './dashboards/AsignarTutoresPage';
+import { CareerProvider } from '../context/CareerContext';
+import { CareerSelector } from './ui/CareerSelector';
+import { Settings as SettingsIcon, UserX, UserCheck } from 'lucide-react';
 
   // Login Component
 const Login = () => {
@@ -221,10 +236,11 @@ const Login = () => {
   );
 };
 
-// Layout Principal
-const AppLayout = () => {
+// Layout Principal (wrapped with CareerProvider)
+const AppLayoutInner = () => {
   const { usuario, rol, loading } = useAuth();
-  
+  const { alertas } = useAlertas(usuario?.id || '');
+
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center bg-[#0F1B2D]"><div className="skeleton h-32 w-32 rounded-full"></div></div>;
   }
@@ -237,11 +253,12 @@ const AppLayout = () => {
   const isTutor = rol === 'tutor' || rol === 'asesor_par';
   const isDocente = rol === 'docente';
   const isAdmin = rol === 'admin';
+  const showCareerSelector = isAdmin || isDocente;
 
   let dockItems = [];
-  
-  // Fake alert count for now, since useAlertas is not fully integrated yet
-  const alertCount = 0; 
+
+  // Real alert count from useAlertas — only meaningful for tutors
+  const alertCount = (rol === 'tutor' || rol === 'asesor_par') ? alertas.length : 0;
 
   if (isEstudiante) {
     dockItems = [
@@ -257,21 +274,31 @@ const AppLayout = () => {
       { title: "Mis alumnos", icon: <Users className="w-5 h-5" />, href: "/alumnos" },
       { title: "Alertas", icon: <div className="relative"><Bell className="w-5 h-5" />{alertCount > 0 && <span className="absolute -top-1 -right-1 bg-red-500 w-4 h-4 rounded-full text-[10px] flex items-center justify-center text-white">{alertCount}</span>}</div>, href: "/alertas" },
       { title: "Intervenciones", icon: <ClipboardList className="w-5 h-5" />, href: "/intervenciones" },
+      { title: "Sin Contacto", icon: <UserX className="w-5 h-5" />, href: "/sin-contacto" },
       { title: "Salir", icon: <LogOut className="w-5 h-5" />, href: "/logout" },
     ];
   } else if (isDocente) {
     dockItems = [
       { title: "Cohorte", icon: <BarChart2 className="w-5 h-5" />, href: "/dashboard" },
+      { title: "Alumnos", icon: <Users className="w-5 h-5" />, href: "/alumnos" },
       { title: "Materias", icon: <BookOpen className="w-5 h-5" />, href: "/materias" },
+      { title: "Cargar Notas", icon: <ClipboardList className="w-5 h-5" />, href: "/cargar-notas" },
       { title: "Reportes", icon: <TrendingDown className="w-5 h-5" />, href: "/reportes" },
       { title: "Salir", icon: <LogOut className="w-5 h-5" />, href: "/logout" },
     ];
   } else if (isAdmin) {
     dockItems = [
       { title: "Inicio", icon: <Home className="w-5 h-5" />, href: "/dashboard" },
+      { title: "Alumnos", icon: <Users className="w-5 h-5" />, href: "/alumnos" },
       { title: "Plan", icon: <BookOpen className="w-5 h-5" />, href: "/plan" },
       { title: "Encuestas", icon: <ClipboardList className="w-5 h-5" />, href: "/encuestas" },
+      { title: "Cargar Notas", icon: <ClipboardList className="w-5 h-5" />, href: "/cargar-notas" },
+      { title: "Indicadores", icon: <BarChart2 className="w-5 h-5" />, href: "/indicadores" },
+      { title: "Alertas", icon: <Bell className="w-5 h-5" />, href: "/alertas" },
       { title: "Usuarios", icon: <Users className="w-5 h-5" />, href: "/usuarios" },
+      { title: "Reportes", icon: <TrendingDown className="w-5 h-5" />, href: "/reportes" },
+      { title: "Asignar Tutores", icon: <UserCheck className="w-5 h-5" />, href: "/asignar-tutores" },
+      { title: "Sin Contacto", icon: <UserX className="w-5 h-5" />, href: "/sin-contacto" },
       { title: "Ajustes", icon: <SettingsIcon className="w-5 h-5" />, href: "/configuracion" },
       { title: "Salir", icon: <LogOut className="w-5 h-5" />, href: "/logout" },
     ];
@@ -284,6 +311,12 @@ const AppLayout = () => {
         <div className="absolute bottom-[-10%] right-[10%] w-[400px] h-[400px] bg-[rgba(20,184,166,0.15)] rounded-full blur-[100px]" />
       </div>
       <div className="flex-1 overflow-y-scroll w-full pb-24 relative z-10">
+        {/* Top bar with career selector */}
+        {showCareerSelector && (
+          <div className="max-w-7xl mx-auto px-4 md:px-8 pt-4">
+            <CareerSelector />
+          </div>
+        )}
         <div className="max-w-7xl mx-auto p-4 md:p-8">
           <Outlet />
         </div>
@@ -300,6 +333,12 @@ const AppLayout = () => {
     </div>
   );
 };
+
+const AppLayout = () => (
+  <CareerProvider>
+    <AppLayoutInner />
+  </CareerProvider>
+);
 
 const EncuestasSelector = () => {
   const { rol } = useAuth();
@@ -320,14 +359,19 @@ export const AppRouter = () => {
           <Route path="plan" element={<PlanSelector />} />
           <Route path="encuestas" element={<EncuestasSelector />} />
           <Route path="encuesta-inicial" element={<EncuestaInicial />} />
-          <Route path="ayuda" element={<Placeholder title="Pedir Ayuda" />} />
-          <Route path="alumnos" element={<Placeholder title="Mis Alumnos" />} />
-          <Route path="alertas" element={<Placeholder title="Alertas" />} />
-          <Route path="intervenciones" element={<Placeholder title="Intervenciones" />} />
-          <Route path="materias" element={<Placeholder title="Materias" />} />
-          <Route path="reportes" element={<Placeholder title="Reportes" />} />
-          <Route path="usuarios" element={<Placeholder title="Usuarios" />} />
+          <Route path="ayuda" element={<AyudaPage />} />
+          <Route path="alumnos" element={<AlumnosPage />} />
+          <Route path="alumnos/:estudianteId" element={<PerfilEstudiantePage />} />
+          <Route path="alertas" element={<AlertasPage />} />
+          <Route path="intervenciones" element={<IntervencionesPage />} />
+          <Route path="sin-contacto" element={<SinContactoPage />} />
+          <Route path="materias" element={<MateriasPage />} />
+          <Route path="reportes" element={<ReportesPage />} />
+          <Route path="usuarios" element={<UsuariosPage />} />
           <Route path="configuracion" element={<Configuracion />} />
+          <Route path="cargar-notas" element={<CargaNotasPage />} />
+          <Route path="indicadores" element={<IndicadoresPage />} />
+          <Route path="asignar-tutores" element={<AsignarTutoresPage />} />
           <Route path="importar-alumnos" element={<ImportarAlumnos />} />
         </Route>
         <Route path="/logout" element={<Logout />} />
@@ -343,18 +387,5 @@ const Logout = () => {
   return <Navigate to="/login" replace />;
 };
 
-const Placeholder = ({ title }: { title: string }) => {
-  const { usuario, rol } = useAuth();
-  return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <h1 className="text-3xl font-bold text-white mb-2">{title}</h1>
-      <p className="text-gray-400">Bienvenido, {usuario?.email} ({rol})</p>
-      <div className="mt-8 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <div className="h-48 rounded-2xl bg-gray-800/50 border border-gray-700 animate-pulse"></div>
-        <div className="h-48 rounded-2xl bg-gray-800/50 border border-gray-700 animate-pulse"></div>
-        <div className="h-48 rounded-2xl bg-gray-800/50 border border-gray-700 animate-pulse hidden md:block"></div>
-      </div>
-    </div>
-  );
-}
+
 

@@ -1,205 +1,224 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useEstudiantes } from '../../hooks/useEstudiantes';
 import { useAlertas } from '../../hooks/useAlertas';
-import { crearIntervencion } from '../../services/intervencionesService';
-import { Users, AlertTriangle, MessageCircle, FileText } from 'lucide-react';
+import { useEntrevistas } from '../../hooks/useEntrevistas';
+import { Users, AlertTriangle, MessageCircle, FileText, Loader2, Calendar } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { supabase } from '../../lib/supabase';
+import { InterviewForm } from '../ui/InterviewForm';
+
+interface StudentScore {
+  valor: number;
+  nivel_riesgo: string;
+}
 
 export const DashTutor = () => {
   const { usuario, rol } = useAuth();
   const { estudiantes: myStudents, loading: estLoading } = useEstudiantes(usuario?.id || '', rol || '');
-  const { alertas } = useAlertas(usuario?.id || '');
-  
-  const [selectedStudent, setSelectedStudent] = useState<any | null>(null);
+  const { alertas } = useAlertas(usuario?.id || '', rol);
+  const { entrevistas, crearEntrevista } = useEntrevistas(usuario?.id || '', rol || '');
 
-  const formatScore = (riskLevel: string) => {
-    switch(riskLevel) {
-      case 'bajo': return <span className="badge badge-success text-white">Vigoroso</span>;
-      case 'medio': return <span className="badge badge-warning">Moderado</span>;
-      case 'alto': return <span className="badge badge-error text-white">Alto Riesgo</span>;
-      case 'critico': return <span className="badge bg-gray-900 text-white">Crítico</span>;
-      default: return null;
-    }
-  }
+  const [selectedStudent, setSelectedStudent] = useState<import('../../hooks/useEstudiantes').EstudianteRow | null>(null);
+  const [studentScores, setStudentScores] = useState<Record<string, StudentScore>>({});
+  const [scoresLoading, setScoresLoading] = useState(true);
+  const [formOpen, setFormOpen] = useState(false);
+  const [preselectedStudent, setPreselectedStudent] = useState<string | undefined>();
 
-  // Intervencion modal
-  const [modalOpen, setModalOpen] = useState(false);
-  const [intervData, setIntervData] = useState({ summary: '', agreements: '', nextAction: '' });
-  const [savingInterv, setSavingInterv] = useState(false);
+  // Count pending entrevistas
+  const entrevistasPendientes = useMemo(
+    () => entrevistas.filter(e => e.seguimiento_requerido).length,
+    [entrevistas]
+  );
 
-  const handleSaveIntervention = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (selectedStudent && usuario) {
-      setSavingInterv(true);
-      try {
-        await crearIntervencion({
-          estudiante_id: selectedStudent.estudiante_id,
-          tutor_id: usuario.id,
-          tipo: 'entrevista',
-          modalidad: 'virtual',
-          fecha_realizada: new Date().toISOString(),
-          motivo: 'Seguimiento programado',
-          resumen: intervData.summary,
-          compromisos: intervData.agreements,
-          proxima_accion: intervData.nextAction
-        });
-        setModalOpen(false);
-        setSelectedStudent(null);
-        setIntervData({ summary: '', agreements: '', nextAction: '' });
-        alert("Intervención registrada correctamente.");
-      } catch (err: any) {
-        alert("Error al guardar: " + err.message);
-      } finally {
-        setSavingInterv(false);
+  // Batch fetch scores for all tutor's students
+  useEffect(() => {
+    const fetchScores = async () => {
+      if (!myStudents.length) {
+        setScoresLoading(false);
+        return;
       }
-    }
-  }
+      setScoresLoading(true);
+      try {
+        const ids = myStudents.map((s) => s.id).filter(Boolean);
+        if (ids.length === 0) {
+          setScoresLoading(false);
+          return;
+        }
 
-  if (estLoading) return <div className="text-white">Cargando alumnos...</div>;
+        const { data: scoresData } = await supabase
+          .from('scores')
+          .select('estudiante_id, valor, nivel_riesgo, calculado_at')
+          .in('estudiante_id', ids)
+          .order('calculado_at', { ascending: false });
+
+        const scoreMap: Record<string, StudentScore> = {};
+        for (const s of scoresData ?? []) {
+          if (!scoreMap[s.estudiante_id]) {
+            scoreMap[s.estudiante_id] = { valor: s.valor, nivel_riesgo: s.nivel_riesgo };
+          }
+        }
+        setStudentScores(scoreMap);
+      } catch (err) {
+        console.error('Error fetching tutor scores:', err);
+      } finally {
+        setScoresLoading(false);
+      }
+    };
+
+    fetchScores();
+  }, [myStudents]);
+
+  const formatScore = (nivelRiesgo: string | undefined) => {
+    switch(nivelRiesgo) {
+      case 'bajo': return <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">Vigoroso</span>;
+      case 'medio': return <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">Moderado</span>;
+      case 'alto': return <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-orange-500/10 text-orange-400 border border-orange-500/20">Alto Riesgo</span>;
+      case 'critico': return <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-red-500/10 text-red-400 border border-red-500/20">Crítico</span>;
+      default: return <span className="text-slate-600 text-xs">Sin score</span>;
+    }
+  };
+
+  const studentOptions = useMemo(() =>
+    myStudents.map((s) => ({
+      id: s.id,
+      nombre: s.nombre,
+      apellido: s.apellido,
+      nivel_riesgo: s.nivel_riesgo,
+    })),
+    [myStudents]
+  );
+
+  const handleOpenForm = (student?: import('../../hooks/useEstudiantes').EstudianteRow) => {
+    if (student) {
+      setSelectedStudent(student);
+      setPreselectedStudent(student.id);
+    }
+    setFormOpen(true);
+  };
+
+  if (estLoading || scoresLoading) {
+    return (
+      <div className="text-white min-h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="w-8 h-8 text-teal-400 animate-spin" />
+          <span className="text-sm text-slate-400">Cargando alumnos...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6">
       <header className="flex justify-between items-end mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-white">Mis Alumnos a Cargo</h1>
-          <p className="text-gray-400 mt-1">Monitoreo y seguimiento de cohortes asignadas.</p>
+          <h1 className="font-display text-2xl font-semibold text-white tracking-tight flex items-center gap-3">
+            <div className="w-10 h-10 flex items-center justify-center bg-blue-500/10 border border-blue-500/20 rounded-xl">
+              <Users className="w-5 h-5 text-blue-400" />
+            </div>
+            Mis Alumnos a Cargo
+          </h1>
+          <p className="text-sm text-slate-500 font-sans mt-2">
+            Monitoreo y seguimiento de cohortes asignadas.
+          </p>
         </div>
-        <div className="stats shadow bg-gray-900 border border-gray-800">
-          <div className="stat px-6 py-2">
-            <div className="stat-title text-gray-400">Total Alumnos</div>
-            <div className="stat-value text-blue-500 text-2xl">{myStudents.length}</div>
+        <div className="flex gap-3">
+          <div className="bg-white/[0.04] border border-white/[0.07] rounded-2xl px-5 py-3 backdrop-blur-md text-center">
+            <div className="text-xs text-slate-500 font-sans">Total Alumnos</div>
+            <div className="font-display text-2xl font-bold text-blue-400">{myStudents.length}</div>
+          </div>
+          <div className="bg-white/[0.04] border border-white/[0.07] rounded-2xl px-5 py-3 backdrop-blur-md text-center">
+            <div className="text-xs text-slate-500 font-sans flex items-center gap-1"><Calendar className="w-3 h-3" /> Entrevistas Pendientes</div>
+            <div className={cn("font-display text-2xl font-bold", entrevistasPendientes > 0 ? "text-amber-400" : "text-slate-600")}>
+              {entrevistasPendientes}
+            </div>
           </div>
         </div>
       </header>
 
       {/* Tabla de Alumnos */}
-      <div className="overflow-x-auto bg-gray-900 rounded-2xl border border-gray-800 shadow-xl">
-        <table className="table table-zebra table-pin-rows table-pin-cols w-full">
-          <thead>
-            <tr className="bg-gray-950 text-gray-300 border-b border-gray-800">
-              <th>Alumno</th>
-              <th>Score (Riesgo)</th>
-              <th>Perfil Silencioso</th>
-              <th>Ayuda</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-300">
-            {myStudents.map(student => {
-              const u = student.usuarios;
-              // Fake properties since we need to fetch scores explicitly for each, 
-              // but assuming we'd use the backend data eventually.
-              const score = student.score || 50; 
-              const riskLevel = student.riskLevel || 'medio';
-              const needsHelp = alertas.some((a: any) => a.estudiante_id === student.estudiante_id && a.tipo === 'solicitud_ayuda');
-
-              return (
-              <tr key={student.estudiante_id} className="border-b border-gray-800">
-                <td>
-                  <div className="font-bold">{u?.nombre} {u?.apellido}</div>
-                  <div className="text-sm opacity-50">{u?.legajo || 'Sin Legajo'}</div>
-                </td>
-                <td>
-                  <div className="flex items-center gap-2">
-                    {formatScore(riskLevel)}
-                    <span className="text-xs font-mono bg-gray-800 px-2 py-1 rounded">{score}/100</span>
-                  </div>
-                </td>
-                <td>
-                  {student.isSilentProfile ? (
-                    <span className="flex items-center text-amber-500 gap-1 text-xs">
-                      <AlertTriangle className="w-4 h-4" /> Sí
-                    </span>
-                  ) : <span className="text-gray-500 text-xs">No</span>}
-                </td>
-                <td>
-                  {needsHelp ? (
-                    <span className="badge badge-error badge-outline gap-1 animate-pulse">
-                      <MessageCircle className="w-3 h-3" /> Solicitó
-                    </span>
-                  ) : '-'}
-                </td>
-                <td>
-                  <button 
-                    className="btn btn-sm btn-ghost text-blue-400 hover:bg-gray-800"
-                    onClick={() => { setSelectedStudent(student); setModalOpen(true); }}
-                  >
-                    Detalles / Intervención
-                  </button>
-                </td>
+      <div className="bg-white/[0.04] rounded-2xl border border-white/[0.07] backdrop-blur-md overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm font-sans">
+            <thead>
+              <tr className="border-b border-white/[0.07]">
+                <th className="text-left px-5 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">Alumno</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">Score (Riesgo)</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">Perfil Silencioso</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">Ayuda</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">Acciones</th>
               </tr>
-            )})}
-            {myStudents.length === 0 && (
-              <tr><td colSpan={5} className="text-center py-8 text-gray-500">No tienes alumnos asignados.</td></tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {myStudents.map(student => {
+                const scoreData = studentScores[student.id];
+                const score = scoreData?.valor ?? null;
+                const riskLevel = scoreData?.nivel_riesgo ?? null;
+                const needsHelp = alertas.some((a: Record<string, unknown>) => a.estudiante_id === student.id && a.tipo === 'solicitud_ayuda');
+                const isSilentProfile = riskLevel === 'alto' || riskLevel === 'critico';
+
+                return (
+                <tr key={student.id} className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors">
+                  <td className="px-5 py-3">
+                    <div className="font-medium text-slate-200">{student.nombre} {student.apellido}</div>
+                    <div className="text-xs text-slate-500 font-mono">{student.legajo || 'Sin Legajo'}</div>
+                  </td>
+                  <td className="px-5 py-3">
+                    <div className="flex items-center gap-2">
+                      {formatScore(riskLevel ?? undefined)}
+                      {score !== null && (
+                        <span className="text-xs font-mono bg-white/[0.04] px-2 py-1 rounded text-slate-400">{Math.round(score)}/100</span>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-5 py-3">
+                    {isSilentProfile ? (
+                      <span className="flex items-center text-amber-400 gap-1 text-xs">
+                        <AlertTriangle className="w-4 h-4" /> Sí
+                      </span>
+                    ) : <span className="text-slate-600 text-xs">No</span>}
+                  </td>
+                  <td className="px-5 py-3">
+                    {needsHelp ? (
+                      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-red-500/10 text-red-400 border border-red-500/20 animate-pulse">
+                        <MessageCircle className="w-3 h-3" /> Solicitó
+                      </span>
+                    ) : <span className="text-slate-600 text-xs">—</span>}
+                  </td>
+                  <td className="px-5 py-3">
+                    <button
+                      className="text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                      onClick={() => handleOpenForm(student)}
+                    >
+                      Detalles / Intervención
+                    </button>
+                  </td>
+                </tr>
+              )})}
+              {myStudents.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="text-center py-12 text-slate-600">
+                    <Users className="w-8 h-8 mx-auto mb-2" />
+                    <span className="text-sm font-sans">No tienes alumnos asignados.</span>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <AnimatePresence>
-        {modalOpen && selectedStudent && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-            <motion.div 
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-gray-900 rounded-2xl border border-gray-800 p-6 w-full max-w-2xl shadow-2xl overflow-y-auto max-h-[90vh]"
-            >
-              <h3 className="font-bold text-2xl mb-4 text-white">
-                Intervención: {selectedStudent.usuarios?.nombre} {selectedStudent.usuarios?.apellido}
-              </h3>
-              
-              <div className="bg-gray-800 p-4 rounded-xl mb-6">
-                <h4 className="font-semibold text-gray-300 mb-2 flex items-center gap-2">
-                  <FileText className="w-4 h-4" /> Síntesis y Métricas Recientes
-                </h4>
-                <p className="text-sm text-gray-400">
-                  El estudiante presenta un nivel de riesgo {selectedStudent.riskLevel || 'medio'} según los indicadores determinísticos de su actividad, notas y respuestas manuales de encuesta. Revise individualmente las métricas en su expediente (o charle directamente con él).
-                </p>
-              </div>
-
-              <form onSubmit={handleSaveIntervention} className="space-y-4">
-                <div>
-                  <label className="label text-sm text-gray-400">Resumen de la entrevista</label>
-                  <textarea 
-                    required
-                    className="textarea textarea-bordered w-full bg-gray-950 border-gray-700 text-white" 
-                    rows={3}
-                    value={intervData.summary}
-                    onChange={e => setIntervData({...intervData, summary: e.target.value})}
-                  ></textarea>
-                </div>
-                <div>
-                  <label className="label text-sm text-gray-400">Compromisos acordados</label>
-                  <textarea 
-                    required
-                    className="textarea textarea-bordered w-full bg-gray-950 border-gray-700 text-white" 
-                    rows={2}
-                    value={intervData.agreements}
-                    onChange={e => setIntervData({...intervData, agreements: e.target.value})}
-                  ></textarea>
-                </div>
-                <div>
-                  <label className="label text-sm text-gray-400">Próxima acción planificada</label>
-                  <input 
-                    type="text" required
-                    className="input input-bordered w-full bg-gray-950 border-gray-700 text-white" 
-                    value={intervData.nextAction}
-                    onChange={e => setIntervData({...intervData, nextAction: e.target.value})}
-                  />
-                </div>
-                <div className="modal-action">
-                  <button type="button" disabled={savingInterv} className="btn btn-ghost text-gray-400" onClick={() => setModalOpen(false)}>Cancelar</button>
-                  <button type="submit" disabled={savingInterv} className="btn btn-primary bg-blue-600 border-none text-white">{savingInterv ? 'Guardando...' : 'Guardar Intervención'}</button>
-                </div>
-              </form>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      {/* Shared InterviewForm modal */}
+      <InterviewForm
+        isOpen={formOpen}
+        onClose={() => { setFormOpen(false); setSelectedStudent(null); setPreselectedStudent(undefined); }}
+        onSuccess={() => {}}
+        estudiantes={studentOptions}
+        estudianteIdPreseleccionado={preselectedStudent}
+        tutorId={usuario?.id || ''}
+        onSubmit={crearEntrevista}
+      />
     </div>
   );
 };
-
